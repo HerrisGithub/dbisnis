@@ -5,17 +5,16 @@ var process = require('process');
     database: process.env.SQL_DATABASE
   };
 
-  var knex = {
-    client: 'pg',
-    version: '9.6',
+  var production= {
+    client: 'postgresql',
     connection: config,
     migrations: {
       tableName: 'migrations'
     },
     ssl:true
-  };
+  }
 
-  var knex=require('knex')(knex);
+  var knex=require('knex')(production);
 
 module.exports = {
   knex:knex,
