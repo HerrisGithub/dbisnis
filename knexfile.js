@@ -1,17 +1,12 @@
 // Update with your config settings.
 
-var config = {
-    host:'localhost',
-    user : 'postgres',
-    password : 'postgres',
-    database : 'direktoribisnis',
-    port:5432
+const config = {
+  socketPath = '/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}',
+  user: process.env.SQL_USER,
+  password: process.env.SQL_PASSWORD,
+  database: process.env.SQL_DATABASE
 };
-// if (process.env.INSTANCE_CONNECTION_NAME && process.env.NODE_ENV === 'production') {
-//   config.host = `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`;
-// }
-// 'postgres://postgres:postgres@127.0.0.1:8989/direktoribisnis')
-// var config ='postgres://postgres@direktoribisnis:suhendra94$@direktoribisnis.postgres.database.azure.com:5432/direktoribisnis?ssl=true';
+
 module.exports = {
 
   development: {
