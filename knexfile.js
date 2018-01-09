@@ -1,5 +1,3 @@
-// Update with your config settings.
-
 var process = require('process');
   var config = {
     user: process.env.SQL_USER,
