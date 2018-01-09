@@ -1,7 +1,8 @@
 # [START app_yaml]
 runtime: nodejs
 env: flex
-
+DEBUG: pool2
+knex: *
 # [START env]
 env_variables:
   SQL_USER: 'postgres'
