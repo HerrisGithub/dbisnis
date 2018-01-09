@@ -5,12 +5,9 @@ var process = require('process');
     database: process.env.SQL_DATABASE
   };
 
-  if (process.env.INSTANCE_CONNECTION_NAME && process.env.NODE_ENV === 'production') {
-    config.socketPath = '/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}';
-  }
-
   var knex = {
     client: 'pg',
+    version: '9.6',
     connection: config,
     migrations: {
       tableName: 'migrations'
