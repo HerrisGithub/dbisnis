@@ -67,6 +67,12 @@ var process = require('process');
 
 module.exports = {
   knex:knex,
-  development:development,
-  production:production
+  development:{
+    client: 'postgresql',
+    connection: config
+  },
+  production:{
+    client: 'postgresql',
+    connection: config
+  }
 };
