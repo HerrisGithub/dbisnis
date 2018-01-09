@@ -10,8 +10,12 @@ var process = require('process');
   }
 
   var knex = {
-    client: 'postgresql',
-    connection: config
+    client: 'pg',
+    connection: config,
+    migrations: {
+      tableName: 'migrations'
+    },
+    ssl:true
   };
 
   var knex=require('knex')(knex);
