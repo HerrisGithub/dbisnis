@@ -1,7 +1,7 @@
 // Update with your config settings.
 
 var config = {
-    host:'104.154.29.255',
+    host:'127.0.0.1',
     user : 'postgres',
     password : 'postgres',
     database : 'direktoribisnis',
