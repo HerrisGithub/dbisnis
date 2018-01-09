@@ -5,7 +5,7 @@ const config = {
   password: process.env.SQL_PASSWORD,
   database: process.env.SQL_DATABASE
 };
-
+console.log(config)
 module.exports = {
 
   development: {
