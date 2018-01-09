@@ -12,16 +12,11 @@ if (process.env.INSTANCE_CONNECTION_NAME && process.env.NODE_ENV === 'production
   config.host = `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`;
 }
 
-// Connect to the database
-var knex = Knex({
-  client: 'pg',
-  connection: config
-});
-
-var conn=knex;
-
 module.exports = {
-  knex:conn,
+  knex:require('knex')({
+    client: 'postgresql',
+    connection: config
+  })
   // development:knex,
   // production:knex
 };
