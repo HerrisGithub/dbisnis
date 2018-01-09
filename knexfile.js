@@ -1,19 +1,21 @@
 // Update with your config settings.
 
-// var config = {
-//   user: process.env.SQL_USER,
-//   password: process.env.SQL_PASSWORD,
-//   database: process.env.SQL_DATABASE,
-//   host:'104.154.29.255'
-// };
+var config = {
+    host:'104.154.29.255',
+    user : 'postgres',
+    password : 'postgres',
+    database : 'direktoribisnis',
+    port:1234
+};
 // if (process.env.INSTANCE_CONNECTION_NAME && process.env.NODE_ENV === 'production') {
 //   config.host = `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`;
 // }
-var config ='dirbis-414d9:us-central1:direktoribisnis';
+// 'postgres://postgres:postgres@127.0.0.1:8989/direktoribisnis')
+// var config ='postgres://postgres@direktoribisnis:suhendra94$@direktoribisnis.postgres.database.azure.com:5432/direktoribisnis?ssl=true';
 module.exports = {
 
   development: {
-    client: 'postgresql',
+    client : 'postgresql',
     connection: config,
     pool: {
       min: 2,
@@ -21,7 +23,8 @@ module.exports = {
     },
     migrations: {
       tableName: 'knex_migrations'
-    }
+    },
+    ssl:false
   },
 
   staging: {
