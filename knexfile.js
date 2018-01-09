@@ -1,9 +1,9 @@
 // Update with your config settings.
 
 const config = {
-  user: process.env.SQL_USER,
-  password: process.env.SQL_PASSWORD,
-  database: process.env.SQL_DATABASE
+  user: 'postgres',
+  password: 'postgres',
+  database: 'direktoribisnis'
 };
 console.log(config)
 module.exports = {
