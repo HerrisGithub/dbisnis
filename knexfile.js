@@ -11,11 +11,11 @@ var process = require('process');
     config.socketPath = '/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}';
   }
 
-  var Knex = require('knex');
-  var knex = Knex({
-    client: 'postgresql',
-    connection: config
-  });
+  // var Knex = require('knex');
+  // var knex = Knex({
+  //   client: 'postgresql',
+  //   connection: config
+  // });
 
 
 
@@ -60,7 +60,10 @@ var process = require('process');
   //   },
   //   ssl:true
   // }
-  var knex=require('knex')(knex);
+  var knex=require('knex')({
+    client: 'postgresql',
+    connection: config
+  });
 
 module.exports = {
   knex:knex,
