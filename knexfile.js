@@ -1,24 +1,48 @@
-var process = require('process');
-  var config = {
-    user: process.env.SQL_USER,
-    password: process.env.SQL_PASSWORD,
-    database: process.env.SQL_DATABASE
-  };
+// Update with your config settings.
 
-  var production= {
-    client: 'pg',
+  var development= {
+    client: 'postgresql',
     connection: {
-      database:'direktoribisnis',
-      user:'postgres',
-      password:'postgres',
+      user:process.env.SQL_USER,
+      password:process.env.SQL_PASSWORD,
+      database:process.env.SQL_DATABASE,
+      host:'104.154.29.255'
     },
     migrations: {
       tableName: 'migrations'
     },
-    ssl:true
+    ssl:true,
+  //   client: 'pg',
+  //   connection: {
+  //     port:8989,
+  //     database:'direktoribisnis',
+  //     user:'postgres',
+  //     password:'postgres',
+  //     host:'127.0.0.1'},
+  // }
   }
 
-  var knex=require('knex')(production);
+  // var production= {
+  //   client: 'postgresql',
+  //   connection: process.env.DATABASE_URL,
+  //   migrations: {
+  //     tableName: 'migrations'
+  //   },
+  //   ssl:true
+  // }
+  // var production= {
+  //   client: 'postgresql',
+  //   connection: {
+  //     user:process.env.SQL_USER,
+  //     password:process.env.SQL_PASSWORD,
+  //     database:process.env.SQL_DATABASE
+  //   },
+  //   migrations: {
+  //     tableName: 'migrations'
+  //   },
+  //   ssl:true
+  // }
+  var knex=require('knex')(development);
 
 module.exports = {
   knex:knex,
