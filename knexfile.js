@@ -25,7 +25,7 @@ function connect () {
   var conn=knex;
 
 module.exports = {
-  knex:knex,
+  knex:conn,
   development:knex,
   production:knex
 };
