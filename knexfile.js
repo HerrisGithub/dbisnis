@@ -6,8 +6,12 @@ var process = require('process');
   };
 
   var production= {
-    client: 'postgresql',
-    connection: config,
+    client: 'pg',
+    connection: {
+      database:'direktoribisnis',
+      user:'postgres',
+      password:'postgres',
+    },
     migrations: {
       tableName: 'migrations'
     },
