@@ -1,11 +1,11 @@
 // Update with your config settings.
 
 var config = {
-    host:'127.0.0.1',
+    host:'localhost',
     user : 'postgres',
     password : 'postgres',
     database : 'direktoribisnis',
-    port:1234
+    port:5432
 };
 // if (process.env.INSTANCE_CONNECTION_NAME && process.env.NODE_ENV === 'production') {
 //   config.host = `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`;
