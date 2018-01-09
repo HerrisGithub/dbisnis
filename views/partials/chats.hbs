@@ -1,0 +1,152 @@
+<link rel="stylesheet" href="/stylesheets/chats.css">
+<aside id="chatss" class="tabbed_sidebar ng-scope chat_sidebar" style="right: 50px;">
+        {{!-- head --}}
+        <div class="popup-head">
+    			<div class="popup-head-left pull-left">
+                    <img class="md-user-image" data-bind="attr:{src:lay.creatorProfile().photo}" 
+                    style="height: 40px; width: 40px">
+
+                    <!-- ko if:lay.creatorProfile().company_name -->
+                        <h1 data-bind="text:lay.creatorProfile().company_name"></h1>
+                    <!-- /ko --> 
+                    <!-- ko ifnot:lay.creatorProfile().company_name -->
+                        <h1 data-bind="text:lay.creatorProfile().fullname"></h1>
+                    <!-- /ko --> 
+                    
+                </div>
+                <div class="popup-head-right pull-right">
+                    <div class="btn-group gurdeepoushan">
+                                    <button class="chat-header-button" 
+                                   
+                                    data-toggle="dropdown" 
+                                    type="button" aria-expanded="false">
+                                    <i class="glyphicon glyphicon-paperclip" ></i> </button>
+                                    {{!-- <button class="chat-header-button"  
+                                    type="button" data-bind="click:lay.minimize">
+                                    <i class="fa fa-minus" style="color: white"></i> </button> --}}
+                                    <ul role="menu" class="dropdown-menu pull-right">
+                                    <li><a href="#"  data-bind="click:lay.lampirkanProduk"><span class="glyphicon glyphicon-shopping-cart" 
+                                    aria-hidden="true"></span> Produk</a></li>
+                                        </ul>
+                                    <button class="chat-header-button pull-right" 
+                    data-bind="click:lay.closeChat">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                    </div>
+                    
+
+                    </div>
+		</div>
+
+        {{!-- end head --}}
+
+
+        <div id="chat" class="chat_box_wrapper chat_box_small chat_box_active" 
+        style="opacity: 1; display: block; 
+        transform: translateX(0px); background:#eee">
+            <div id="chatContent" class="chat_box touchscroll chat_box_colors_a">
+                <!-- templating chat content -->
+            </div>
+        </div>
+              
+
+    <!-- submit box -->   
+        <div class="chat_submit_box" style="background-color: white">
+            <div class="uk-input-group">
+                <div class="gurdeep-chat-box">
+                <span style="vertical-align: sub;" class="uk-input-group-addon">
+                <a href="#"><i class="fa fa-smile-o"></i></a>
+                </span>
+                <input type="text" placeholder="Type a messagen" data-bind="value:lay.content" class="md-input">
+                <span style="vertical-align: sub;"  class="uk-input-group-addon">
+                </span>
+                </div>
+            <span class="uk-input-group-addon">
+            <a href="#" data-bind="click:lay.sendChat"><i class="glyphicon glyphicon-send" style="color: green"></i></a>
+            </span>
+            </div>
+        </div>
+    <!-- end submit box -->
+
+    <div id="lampiran">
+      
+    <div class="row">
+       <!-- ko foreach:lay.products -->
+            <a href="/produk/get/" class="asdad"><div class="w3-third w3-container w3-margin-bottom" style="
+            border-color: white; 
+            width: 600px;
+            border-style: solid; border-width: 1px; padding: 0; 
+            padding-right: 5px;">
+                
+                <div class="radio" style="padding-left: 20px">
+                    <label>
+                        <input type="radio" name="choose" data-bind="checked:$root.lay.pilihProduk,value:product_id">
+                        <span data-bind="text:nama"></span>
+                    </label>
+                </div>
+                
+                <img alt="Norway" data-bind="attr:{src:gambar}" style="width:100%; height: 150px" class="w3-hover-opacity">
+                <div class="w3-container w3-white"><p></p>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Variasi</th>
+                                <th>Harga</th>
+                                <th>Grosir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <!-- ko foreach:$root.lay.getVariasi($data.product_id) -->
+                            <tr>
+                                <td data-bind="text:nama"></td>
+                                <td data-bind="text:harga"></td>
+                                <td>
+                                    <!-- ko foreach:$root.lay.getGrosirByVariasi($data.id) -->
+                                        <p>* Min. Pembelian : <span data-bind="text:$data.min"></span>, Max. Pembelian : <span data-bind="text:$data.max"></span>=><span data-bind="text:'Harga Rp. '+$data.satuan"></span></p>
+                                    <!-- /ko -->
+                                </td>
+                                
+                            </tr>
+                        <!-- /ko -->
+                            
+                        </tbody>
+                    </table>
+                    
+                    
+                </div>
+              </div>
+            </a> 
+        <!-- /ko -->
+        
+    </div>
+       <div class="row">
+            <div class="col-md-12">
+                <label>
+                    <input type="checkbox" data-bind="checked:lay.nego">
+                    Nego
+                </label>
+            </div>
+            
+        </div>
+    <div class="row" data-bind="visible:lay.nego">
+      <hr>
+        <div class="col-md-4">
+            <label for="">Kuantitas</label>
+            <input type="number" class="form-control" placeholder="Kuantitas" data-bind="value:lay.qty">
+        </div>
+        <div class="col-md-5">
+            <label for="">Harga</label>
+            <input type="number" class="form-control" placeholder="Harga" data-bind="value:lay.harga">
+        </div>
+       
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+                    <label for="">&nbsp;</label>
+                    <button class="btn btn-success btn-sm" data-bind="click:lay.lampirkanProdukAction">Lampirkan</button>
+                </div>
+            </div>      
+      
+    </div>
+                
+     

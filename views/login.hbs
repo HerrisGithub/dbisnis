@@ -1,0 +1,107 @@
+<style>
+
+
+	@media (min-width: 768px) {
+		.omb_row-sm-offset-3 div:first-child[class*="col-"] {
+			margin-left: 25%;
+		}
+	}
+
+	.omb_login .omb_authTitle {
+		text-align: center;
+		line-height: 300%;
+	}
+		
+	.omb_login .omb_socialButtons a {
+		color: white; // In yourUse @body-bg 
+		opacity:0.9;
+	}
+	.omb_login .omb_socialButtons a:hover {
+		color: white;
+		opacity:1;    	
+	}
+	.omb_login .omb_socialButtons .omb_btn-facebook {background: #3b5998;}
+	.omb_login .omb_socialButtons .omb_btn-twitter {background: #00aced;}
+	.omb_login .omb_socialButtons .omb_btn-google {background: #c32f10;}
+
+
+	.omb_login .omb_loginOr {
+		position: relative;
+		font-size: 1.5em;
+		color: #aaa;
+		margin-top: 1em;
+		margin-bottom: 1em;
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;
+	}
+	.omb_login .omb_loginOr .omb_hrOr {
+		background-color: #cdcdcd;
+		height: 1px;
+		margin-top: 0px !important;
+		margin-bottom: 0px !important;
+	}
+	.omb_login .omb_loginOr .omb_spanOr {
+		display: block;
+		position: absolute;
+		left: 50%;
+		top: -0.6em;
+		margin-left: -1.5em;
+		background-color: white;
+		width: 3em;
+		text-align: center;
+	}			
+
+	.omb_login .omb_loginForm .input-group.i {
+		width: 2em;
+	}
+	.omb_login .omb_loginForm  .help-block {
+		color: red;
+	}
+
+		
+	@media (min-width: 768px) {
+		.omb_login .omb_forgotPwd {
+			text-align: right;
+			margin-top:10px;
+		}		
+	}
+</style>
+<div class="col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4" style="padding-top: 100px;">
+	<form class="form-signin" action="/login_action" method="post" role="form" data-toggle="validator">
+		<input type="hidden" name="frm_referring_url" value="{{referring_url}}">
+		<h2 class="form-signin-heading">Please sign in</h2>
+		<div class="form-group">
+			<input type="email" name="email" class="form-control" placeholder="email address" value="" required autofocus>
+		</div>
+		<div class="form-group">
+			<input type="password" name="password" class="form-control" placeholder="Password" value="" required>
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+	</form>
+	<br>
+	<div class="container">
+	<div class="row">
+		<div class="omb_login">
+           <div class="row omb_row-sm-offset-2 omb_socialButtons" style="padding-left: 30px">
+    	    <div class="col-xs-4 col-sm-2">
+		        <a href="/auth/facebook" class="btn btn-lg btn-block omb_btn-facebook">
+			        <i class="fa fa-facebook visible-xs"></i>
+			        <span class="hidden-xs">Facebook</span>
+		        </a>
+	        </div>
+	        
+	        	<div class="col-xs-4 col-sm-2">
+		        <a href="/auth/google" class="btn btn-lg btn-block omb_btn-google">
+			        <i class="fa fa-google-plus visible-xs"></i>
+			        <span class="hidden-xs">Google+</span>
+		        </a>
+	        </div>
+	        </div>
+    </div>
+            
+        </div>
+	</div>
+</div>
+	   {{!-- <a href="/auth/facebook">Log In with Facebook</a>
+    	<a href="/auth/google">Log In google</a>  --}}
+</div>

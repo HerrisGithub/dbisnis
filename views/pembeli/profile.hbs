@@ -1,0 +1,154 @@
+
+<style>
+    .content{
+        color: gray
+    }
+</style>
+<br>
+{{>dashboard_pembeli}}
+<div class="row" style="font-size: 10pt; 
+font-weight: bold; font-family: Arial, Helvetica, sans-serif" 
+data-bind="event:{load:prof.loadProfile()}">
+    <div class="col-md-7" style="padding-left: 2px;">
+     
+        <div class="tab-content" style="padding-top: 0">
+            <div role="tabpanel" class="tab-pane active" id="akun">
+                 <div class="panel panel-danger" style="height: 50px; padding: 10px">
+              <div class="panel-content">
+                    Data Anda selalu rahasia dan tidak akan kami beritahukan kepada pihak ketiga.
+              </div>
+        </div>
+        <p></p>
+        <ul class="list-group">
+            <li class="list-group-item" style="height:65px">
+                <div class="col-md-6" style="padding-left: 0">
+                    <h3><strong>Informasi Umum</strong></h3>
+                </div>
+                <div class="col-md-6" style="text-align: right">
+                    <a href="#" data-bind="click:prof.informasiUmumClick">
+                        <i class="glyphicon glyphicon-edit" style="font-size: 35pt"></i></a>
+                </div>
+            </li>
+            <li class="list-group-item" style="padding-left: 20px; height: 100px">
+                <div class="col-md-2" style="padding-top: 30px; text-align: right" >Foto Profil</div>
+                <div class="col-md-2" style="height: 100%"><img data-bind="attr:{src:prof.photo}" style="height: 100%"></div>
+            </li>
+             <li class="list-group-item" style="padding-left: 20px; height: 50px">
+                <div class="col-md-2" style="text-align: right">Username</div>
+                <div class="col-md-3 content" style="height: 100%" data-bind="text:prof.username"></div>
+            </li>
+            <li class="list-group-item" style="padding-left: 20px; height: 50px">
+                <div class="col-md-2" style="text-align: right">Nama</div>
+                <div class="col-md-3 content" style="height: 100%" data-bind="text:prof.nama"></div>
+            </li>
+            <li class="list-group-item" style="padding-left: 20px; height: 50px">
+                <div class="col-md-2" style="text-align: right">Tanggal Lahir</div>
+                <div class="col-md-3 content" style="height: 100%" data-bind="text:prof.birth"></div>
+            </li>
+             <li class="list-group-item" style="padding-left: 20px; height: 50px">
+                <div class="col-md-2" style="text-align: right">Jenis Kelamin</div>
+                <!-- ko if:prof.gender -->
+                    <div class="col-md-3 content" style="height: 100%" data-bind="text:'Laki - Laki'"></div>
+                <!-- /ko -->
+                <!-- ko if:!prof.gender() -->
+                    <div class="col-md-3 content" style="height: 100%" data-bind="text:'Perempuan'"></div>
+                <!-- /ko -->
+                
+            </li>
+            <li class="list-group-item" style="height:65px">
+                <div class="col-md-6" style="padding-left: 0">
+                    <h3><strong>Email dan Telepon</strong></h3>
+                </div>
+                <div class="col-md-6" style="text-align: right">
+                    <a href="#email-telepon" data-toggle="modal">
+                        <i class="glyphicon glyphicon-edit" style="font-size: 35pt"></i></a>
+                </div>
+                
+            </li>
+            {{!-- email dan telepon --}}
+            <li class="list-group-item" style="padding-left: 20px; height: 50px">
+                <div class="col-md-2" style=" text-align: right" >Email</div>
+                  <div class="col-md-3 content" style="height: 100%" data-bind="text:prof.email"></div>
+            </li>
+             
+            <li class="list-group-item" style="padding-left: 20px; height: 50px">
+                <div class="col-md-2" style="text-align: right">Telepon</div>
+                <div class="col-md-3 content" style="height: 100%" data-bind="text:prof.phone"></div>
+            </li>
+            <li class="list-group-item" style="height:65px">
+                <div class="col-md-6" style="padding-left: 0">
+                    <h3><strong>Alamat</strong></h3>
+                </div>
+                <div class="col-md-6" style="text-align: right">
+                    <a href="#address" data-toggle="modal">
+                        <i class="glyphicon glyphicon-edit" 
+                        style="font-size: 35pt"></i></a>
+                </div>
+                
+            </li>
+            {{!-- email dan telepon --}}
+             
+             <li class="list-group-item" style="padding-left: 20px; height: 50px">
+                <div class="col-md-2" style="text-align: right">Provinsi</div>
+                <div class="col-md-3 content" style="height: 100%" 
+                data-bind="text:prof.province"></div>
+            </li>
+             <li class="list-group-item" style="padding-left: 20px; height: 50px">
+                <div class="col-md-2" style="text-align: right">Kota/Kabupaten</div>
+                <div class="col-md-3 content" style="height: 100%" data-bind="text:prof.district"></div>
+            </li>
+              <li class="list-group-item" style="padding-left: 20px; height: 50px">
+                <div class="col-md-2" style="text-align: right">Kecamatan</div>
+                <div class="col-md-3 content" style="height: 100%" data-bind="text:prof.subDistrict"></div>
+            </li>
+             <li class="list-group-item" style="padding-left: 20px; height: 50px">
+                <div class="col-md-2" style="text-align: right">Alamat</div>
+                <div class="col-md-3 content" style="height: 100%" data-bind="text:prof.address"></div>
+            </li>
+            <li class="list-group-item" style="padding-left: 20px; height: 50px">
+                <div class="col-md-2" style="text-align: right">Kode Pos</div>
+                <div class="col-md-3 content" style="height: 100%" data-bind="text:prof.postal_code"></div>
+            </li>
+
+
+
+
+
+
+            
+             {{!-- password --}}
+             <li class="list-group-item" style="height:65px" 
+             data-bind="visible:prof.pass">
+                <div class="col-md-6" style="padding-left: 0">
+                    <h3><strong>Password</strong></h3>
+                </div>
+                <div class="col-md-6" style="text-align: right">
+                    <a href="#pass" data-toggle="modal">
+                        <i class="glyphicon glyphicon-edit" style="font-size: 35pt"></i></a>
+                </div>
+                
+            </li>
+            <li 
+            data-bind="visible:prof.pass"
+            class="list-group-item" style="padding-left: 20px; height: 50px">
+                <div class="col-md-2" style=" text-align: right" >Password</div>
+                  <div class="col-md-3 content" style="height: 100%" data-bind="text:'...'"></div>
+            </li>
+           
+             
+        </ul>
+
+        </div>
+        </div>
+
+        
+    </div>
+    
+    
+
+</div>
+
+{{>informasi-umum-modal}}
+{{>email-telepon-modal}}
+{{>password-modal}}
+{{>address-modal}}

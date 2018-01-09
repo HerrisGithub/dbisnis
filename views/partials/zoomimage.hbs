@@ -1,0 +1,22 @@
+<section id="image" class="modal fade" tabindex="-1" data-width="760" style="top: 5%;">
+        <div class="modal-dialog" style="width: 1000px; min-height: 200px">
+            <div class="modal-content" style="min-height: 300px">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body" style="min-height: 200px">
+                    <img id="imageZoom" src="" alt="" style=" height: 500px">
+                </div>
+            </div>
+        </div>
+</section>
+
+
+
+<script>
+    function ImageZoom(){
+        var image = $('#product-title-image').attr('src');
+        $('#imageZoom').attr('src',image);
+		$('#image').modal();
+	}
+</script>

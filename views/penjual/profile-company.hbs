@@ -1,0 +1,271 @@
+<style>
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+ 
+  .paginationjs .paginationjs-pages li{
+      float:left;border:1px solid #aaa;border-right:none;list-style:none
+    }
+  .paginationjs .paginationjs-pages li>a{
+    min-width:30px;
+    height:28px;
+    line-height:28px;
+    display:block;
+    background:white;
+    font-size:14px;
+    color:grey;
+    font-weight: bold;
+    text-decoration:none;
+    text-align:center
+  }
+  .paginationjs .paginationjs-pages li>a:hover{
+    background:black
+    }
+  .paginationjs .paginationjs-pages li.active{
+    border:none
+  }
+  .paginationjs .paginationjs-pages li.active>a{height:30px;line-height:30px;background:#aaa;color:#fff}
+  .paginationjs .paginationjs-pages li.disabled>a{opacity:.3}
+  .paginationjs .paginationjs-pages li.disabled>a:hover{background:0 0}
+  .paginationjs .paginationjs-pages li:first-child,.paginationjs .paginationjs-pages li:first-child>a{border-radius:3px 0 0 3px}
+  .paginationjs .paginationjs-pages li:last-child{border-right:1px solid #aaa;border-radius:0 3px 3px 0}
+  .paginationjs .paginationjs-pages li:last-child>a{border-radius:0 3px 3px 0}
+    a{line-height:36px\9}
+    .paginationjs.paginationjs-big .paginationjs-go-input>input[type=text]{height:36px\9;line-height:36px\9}
+  #myChart{
+    width: 10px;
+  }
+</style>
+<div class="w3-light-grey w3-content" 
+style="max-width:1600px" data-bind="event:{load:pc.loadProfileC()}" >
+
+<input type="text" value="{{data.username}}" id="idCompany" hidden>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" 
+  id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" 
+    class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="{{data.photo}}" style="width:45%;" class="w3-round"><br><br>
+    <h4><b>{{data.username}}</b></h4>
+    <p class="w3-text-grey">{{data.email}}</p>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#portfolio" onclick="w3_close()" 
+    class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>PRODUK</a> 
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">
+      <i class="fa fa-trophy fa-fw w3-margin-right" aria-hidden="true" style="color: gold"></i>REPUTASI</a> 
+     <a href="#katalog" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">
+      <i class="fa fa-book fa-fw w3-margin-right"></i>KATALOG</a>
+    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">
+      <i class="fa fa-envelope fa-fw w3-margin-right"></i>KONTAK</a>
+     
+      
+  </div>
+  <div class="w3-panel w3-large">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" 
+  onclick="w3_close()" 
+  style="cursor:pointer"
+  title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Header -->
+  <header id="portfolio">
+    {{!-- <a href="#"><img src="/dirbis.png" 
+    style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a> --}}
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    <h1><b>{{data.company_name}}</b></h1>
+    <div class="w3-section w3-bottombar w3-padding-16">
+      <span class="w3-margin-right" style="float: left">Filter:</span> 
+
+
+      <div class="dropdown w3-white" style="float: left; margin-right: 4px">
+          <button class="w3-button w3-white dropdown-toggle w3-white" 
+          type="button" data-toggle="dropdown">Kategori
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <!-- ko foreach:pc.kategori -->
+              <li><a href="#" 
+              data-bind="text:kategori,click:$root.pc.filterKategori"></a></li>
+            <!-- /ko -->
+          </ul>
+      </div>
+
+      
+        <div class="dropdown w3-white" style="float: left; margin-right: 4px">
+          <button class="w3-button w3-white dropdown-toggle w3-white" 
+          type="button" data-toggle="dropdown">Urutkan
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <!-- ko foreach:pc.kategoriSort -->
+              <li><a href="#" 
+              data-bind="text:kategori,
+                click:$root.pc.urutkan"></a></li>
+            <!-- /ko -->
+          </ul>
+      </div>
+       <button class="w3-button w3-white" id="allNav"
+       style="float: left margin-right: 4px"
+        data-bind="click:pc.all">ALL</button>
+        
+    
+      
+      <button class="w3-button w3-white w3-hide-small">
+        <i class="fa fa-map-pin w3-margin-right"></i>Art</button>
+        <div class="w3-button w3-white w3-hide-small" style="float: right; width: 400px">
+          <input type="text" style=" height: 30px" 
+          data-bind="value:pc.currentFilter,valueUpdate:'keyup', event:{keyup:pc.searchBox}" 
+          class="form-control" placeholder="Cari Produk" autocomplete="off">
+        </div>
+    </div>
+    </div>
+  </header>
+  <!-- end header -->
+
+
+  
+  <!-- Products -->
+  <div class="w3-row-padding" id="data-container">
+  </div>
+  <br>
+  <!-- Pagination -->
+  <div class="w3-center w3-padding-32">
+    <div class="w3-bar" id="pagination">
+    </div>
+  </div>
+
+  
+  <div class="w3-container w3-padding-large" style="margin-bottom:32px" id="about">
+    <hr style="color: white; border-width: 2px; border-color: white">
+    {{!-- <p>{{data.company_desc}}</p> --}}
+    <h4 ><b>Reputasi</b></h4>
+    <canvas id="myChart"></canvas>
+    <p></p>
+    <hr style="color: white; border-width: 2px; border-color: white">
+    <p>Penilaian dari pembeli</p>
+    <div  id="rating-pembeli">
+    </div>
+      <small><p data-bind="text:'Dari '+pc.ratingCount()+' Review'"></p></small>
+<hr style="color: white; border-width: 2px; border-color: white">
+
+  <br>
+    <p>Transaksi Yang Berhasil Dikirim</p>
+    <div class="w3-grey">
+      <div class="w3-container w3-green w3-padding w3-center" 
+      data-bind="style:{width:pc.averageSuccessOrders()+'%'},
+      text:pc.averageSuccessOrders()+'%'"></div>
+    </div>
+     <small><p data-bind="text:'Sebanyak '+pc.successOrders()+' Orderan'"></p></small>
+   <hr style="color: white; border-width: 2px; border-color: white">
+    <p>Transaksi Yang Dikembalikan</p>
+    <div class="w3-grey">
+      <div class="w3-container w3-green w3-padding w3-center" data-bind="style:{width:pc.averageFailOrders()+'%'},text:pc.averageFailOrders()+'%'"></div>
+    </div>
+     <small><p data-bind="text:'Sebanyak '+pc.failOrders()+' Orderan'"></p></small>
+     <hr style="color: white; border-width: 2px; border-color: white">
+     <br>
+    <p>Total Transaksi (Sukses + Refund) : <span data-bind="text:pc.orders().length"></span></p>
+    <hr style="color: white; border-width: 2px; border-color: white">
+
+<!-- Katalog Section -->
+<div class="w3-container w3-padding-large w3-white" id="katalog" style="min-height: 500px">
+  
+  <div class="page-header">
+    <h4>Daftar Katalog <small> {{data.company_name}}</small></h4>
+  </div>
+    <!-- ko if:pc.katalog -->
+      <!-- ko foreach:pc.katalog -->
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+        <div class="thumbnail">
+          <img data-src="#" alt="">
+          <div class="caption">
+            <h4><span data-bind="text:title"></h4>
+            <p><small data-bind="text:$root.t.moment(created_at)"></small> </p>
+            <div style="height: 200px">
+              <img data-bind="attr:{src:$data.image}" alt="">
+            </div>
+            <br>
+            <p data-bind="text:desc"></p>
+            <p><a type="application/octet-stream" 
+            data-bind="attr:{href:$data.file}"><i class="fa fa-download fa-2x"></i></a></p>
+          </div>
+        </div>
+      </div>
+      <!-- /ko -->
+    <!-- /ko -->
+    <!-- ko ifnot:pc.katalog -->
+        <h1>Katalog Tidak Tersedia</h1>
+    <!-- /ko -->
+    
+  </div>
+<hr style="color: white; border-width: 2px; border-color: white">
+  <!-- Contact Section -->
+  <div class="w3-container w3-padding-large w3-grey">
+    <h4 id="contact"><b>Kontak</b></h4>
+    <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px">
+      <div class="w3-third w3-dark-grey">
+        <p><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></p>
+        <p>{{data.email}}</p>
+      </div>
+      <div class="w3-third w3-teal">
+        <p><i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i></p>
+        <p>{{data.address}}</p>
+      </div>
+      <div class="w3-third w3-dark-grey">
+        <p><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></p>
+        <p>{{data.phone}}</p>
+      </div>
+    </div>
+    <hr class="w3-opacity">
+      <h4 id="contact"><b>Kirimkan pesan</b></h4>
+      <div class="w3-section">
+        <label>Subject</label>
+        <input type="text" 
+        data-bind="value:pc.subject"
+        class="form-control"
+        required="required">
+        
+      </div>
+      <div class="w3-section">
+        <label>Pesan</label>
+          <textarea class="form-control" rows="3" 
+          data-bind="value:pc.messageBody"></textarea>
+      </div>
+      <button type="submit" 
+        class="w3-button w3-black w3-margin-bottom"
+        data-bind="click:pc.sendMessage"
+      >
+        <i class="fa fa-paper-plane w3-margin-right"></i>Kirim Pesan</button>
+  </div>
+
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+
+</script>
+
+</div>

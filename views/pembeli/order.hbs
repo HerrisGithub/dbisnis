@@ -1,0 +1,131 @@
+<div class="container">
+  
+  <div class="col-md-7">
+      <br>
+      
+      <!-- ko foreach:orders.orders -->
+      <div class="list-group row" data-toggle="collapse" data-bind="attr:{'data-target':'#'+id}" style="margin-bottom: 0">
+        <div class="list-group-item active" >
+          <div class="row">
+            <div class="col-md-4">
+              <h4 class="list-group-item-heading" data-bind="text:'ORDER #'+id"></h4>
+              <p class="list-group-item-text" data-bind="text:'Placed on '+tanggal_pemesanan"></p>
+            </div>
+            <div class="col-md-2"> 
+              <h4 class="list-group-item-heading">TOTAL</h4>
+              <p class="list-group-item-text" data-bind="text:'Rp. '+$root.orders.formatLargeNumber(total_pembayaran)" ></p>
+            </div>
+            <div class="col-md-2"> 
+              <h4 class="list-group-item-heading">PROSES</h4>
+            </div>
+            <div class="col-md-4"> 
+              <h4 class="list-group-item-heading" style="text-align: center">AKSI</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-bind="attr:{id:id}" class="collapse" style="background-color: white; padding: 20px">
+          <div class="card card-body" style="padding-top: 0">
+            <!-- ko foreach:$root.orders.details(id) -->
+              <div class="row">
+                <div class="col-md-4">
+                    <div class="col-md-5">
+                        <img data-bind="attr:{src:$root.orders.gambarProduk(product_id)}" style="height: 30px">
+                    </div>
+                    <div class="col-md-7">
+                        <p data-bind="text:product_name"></p>
+                    </div>
+                </div>
+                <div class="col-md-2"> 
+                </div>
+                <div class="col-md-2"> 
+                  <h4 class="list-group-item-heading">PROSES</h4>
+                </div>
+                <div class="col-md-4">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-3">
+                    <button class="btn-sm btn-info" data-bind="click:$root.orders.viewDetails">Details</button>
+                  </div>
+                 
+                </div>
+              </div>
+              <hr>
+              <br>
+            <!-- /ko -->
+          </div>
+      </div>  
+      <br>
+      <!-- /ko -->
+  </div>
+    <div class="col-md-5">
+    <br>
+    <div>
+      <!-- ko if:orders.orderDetails().id -->
+      <ul class="list-group" style="font-variant-caps: all-petite-caps">
+        <strong>
+        <li class="list-group-item" style="height: 130px; border: 2px solid black">
+          <div class="col-md-4" style="height: 100%">
+            <img data-bind="attr:{src:orders.getProfilePenjual(orders.orderDetails().product_by).photo}" class="img-circle" alt="">
+          </div>
+          <div class="col-md-6">
+            <p data-bind="text:orders.orderDetails().product_by" style="padding-top: 10%"></p>
+          </div>
+          <br>
+        </li>
+        <li class="list-group-item" style="height: 200px; border: 2px solid white">
+            <img data-bind="attr:{src:orders.gambarProduk(orders.orderDetails().product_id)}" class="img-thumbnail" alt="" style="height: 100%">
+        </li>
+         <li class="list-group-item">
+          <div class="col-md-4" style="padding-left: 0">Order Item Id</div>
+          <div class="col-md-1">:</div>
+          <div class="col-md-6">
+            <p data-bind="text:orders.orderDetails().id"></p>
+          </div>
+          <br>
+        </li>
+        <li class="list-group-item">
+          <div class="col-md-4" style="padding-left: 0">Nama Produk</div>
+          <div class="col-md-1">:</div>
+          <div class="col-md-6">
+            <p data-bind="text:orders.orderDetails().product_name"></p>
+          </div>
+          <br>
+        </li>
+        <li class="list-group-item">
+          <div class="col-md-4" style="padding-left: 0">Harga Satuan</div>
+          <div class="col-md-1">:</div>
+          <div class="col-md-6">
+            <p data-bind="text:'Rp. '+orders.formatLargeNumber(orders.orderDetails().price)"></p>
+          </div>
+          <br>
+        </li>
+        <li class="list-group-item">
+          <div class="col-md-4" style="padding-left: 0">Qty Pembelian</div>
+          <div class="col-md-1">:</div>
+          <div class="col-md-6">
+            <p data-bind="text:orders.orderDetails().qty"></p>
+          </div>
+          <br>
+        </li>
+        <li class="list-group-item">
+          <div class="col-md-4" style="padding-left: 0">Status</div>
+          <div class="col-md-1">:</div>
+          <div class="col-md-6">
+            <p data-bind="text:orders.orderDetails().status"></p>
+          </div>
+          <br>
+        </li>
+        <li class="list-group-item">
+          <div class="col-md-4" style="padding-left: 0">Tanggal pemesanan</div>
+          <div class="col-md-1">:</div>
+          <div class="col-md-6">
+            <p data-bind="text:orders.formatLocalDate(orders.orderDetails().created_at)"></p>
+          </div>
+          <br>
+        </li>
+       </strong>
+      </ul>
+      <!-- /ko -->
+    </div>
+  </div>
+</div>

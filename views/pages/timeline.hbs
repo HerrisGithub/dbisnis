@@ -1,0 +1,162 @@
+<style>
+  #actScrolling::-webkit-scrollbar
+  {
+    width: 12px;
+    background-color: transparent;
+  }
+   #contactScrolling::-webkit-scrollbar
+  {
+    width: 12px;
+    background-color: transparent;
+  }
+</style>
+<div class="w3-container w3-content" 
+data-bind="attr:{load:t.loadTimeline()}"
+style="max-width:1400px;margin-top:10px">    
+  <div class="w3-row">
+    {{>timeline-left}}
+    <div class="w3-col m6">
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card-2 w3-round w3-white">
+            <div class="w3-container w3-padding">
+                <h6 class="w3-opacity">Search</h6>
+                <div style="padding-bottom: 10px">
+                  <input type="text"
+                  data-bind="value:t.subject" 
+                  class="form-control" 
+                  placeholder="Subject">
+                </div>
+               
+                <div class="row" style="padding-top: 10px">
+                <div class="col-md-5">
+                  </div>
+                  <div class="col-md-7" style="padding-left: 0">
+                    <button
+                    data-bind="click:t.posting" 
+                    class="btn btn-success" 
+                    style="float: right">
+                    <i class="fa fa-pencil"></i>  Post</button> 
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="middle-content">
+            <!-- ko foreach:t.content -->
+            <br>
+            <div class="w3-row-padding">
+                <div class="w3-col m12">
+                  <div class="w3-card-2 w3-round w3-white">
+                    <div class="w3-container w3-padding">
+                       <div class="row">
+                         <table class="table table-hover">
+                           <tbody>
+                             <tr>
+                               <td>
+                                 <div class="col-md-2">
+                                    <img data-bind="attr:{src:photo}" 
+                                    style="width: 50px; border-radius: 50px">
+                                 </div>
+                                 <div class="col-md-4" style="padding-top: 10px">
+                                   <span data-bind="text:author"></span>
+                                 </div>
+                                 <div class="col-md-6" style="padding-top: 10px">
+                                    <span style="float: right">
+                                      <small><strong><small><span data-bind="text:$root.t.moment(created_at)"></span></small></strong></small>
+                                    </span>
+                                 </div>
+                                </td>
+                             </tr>
+                           </tbody>
+                         </table>
+                         <hr style="border-width: 2px">
+                         <table class="table table-hover">
+                           <tbody>
+                             <tr>
+                               <td data-bind="text:title" style="font-weight: bold"></td>
+                             </tr>
+                             <!-- ko if:$root.t.cimage(image) -->
+                                <tr>
+                                  <td><img data-bind="attr:{src:image}" ></td>
+                                </tr>
+                             <!-- /ko -->
+                             <tr>
+                               <td data-bind="text:content" style="font-size: small"></td>
+                             </tr>
+                               
+                           </tbody>
+                         </table>
+                          <hr style="border-width: 2px">
+                          <div class="w3-content w3-theme-l1 w3-card-2">
+                          <table class="w3-content">
+                           <tbody>
+                              <tr style="float: right">
+                                 <td>
+                                    <button href="#"
+                                    data-bind="click:$root.t.follow,
+                                    enable:$root.t.hasFollow(author), attr:{class:'username-'+author+' btn'}">
+                                      <i class="glyphicon glyphicon-plus" 
+                                    style="color: white"></i></button>
+                                  <span class="label label-info">follow</span>
+                                </td>
+                                <td>
+                                    <a href="#" data-bind="click:$root.t.like">
+                                      <i class="glyphicon glyphicon-heart fa-2x" 
+                                      style="color: white"></i>
+                                    </a>
+                                  <span class="label label-info" data-bind="text:$root.t.getLikesCount(postid)"></span>
+                                </td>
+                             </tr>
+                           </tbody>
+                         </table>
+                         </div>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+        <!-- /ko -->
+
+
+      </div>
+    </div>
+     {{>timeline-contact}}
+     {{!-- {{>timeline-right}} --}}
+     {{!-- {{>chatbox}} --}}
+  </div>
+  
+  
+  <script>
+    function myFunction(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+            x.previousElementSibling.className += " w3-theme-d1";
+        } else { 
+            x.className = x.className.replace("w3-show", "");
+            x.previousElementSibling.className = 
+            x.previousElementSibling.className.replace(" w3-theme-d1", "");
+        }
+    }
+    // Used to toggle the menu on smaller screens when clicking on the menu button
+    function openNav() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else { 
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+  </script>
+  <script>
+
+  </script>
+{{!-- <script src="/javascripts/timeline.js"></script> --}}
+<!-- End Page Container -->
+{{!-- </div> --}}
+
+
+
+

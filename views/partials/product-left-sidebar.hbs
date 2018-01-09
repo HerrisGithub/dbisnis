@@ -1,0 +1,70 @@
+ <div style="background-color: white; padding: 15px; height: auto; border-radius: 5px">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <p>REFINE BY CATEGORY</p>
+                        <div class="row">
+                            <ul style="display: block; list-style: none; padding-left: 20px">
+                                <!-- ko foreach:prod.category()  -->
+                                    <li class="catLi"><a href="#" data-bind="text:nama,click:$root.prod.categoryAction"></a></li>
+                                <!-- /ko -->
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <p>BRAND</p>
+                        <input type="search" data-bind="value:prod.currentFilter, valueUpdate : 'afterkeydown', event: { 'keyup': prod.filter }" class="form-control" placeholder="Search">
+                        <!-- ko foreach:prod.produk()  -->
+                            <p data-bind="text:nama"></p>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <p>HARGA</p>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" >
+                    </div>
+                    <div class="col-sm-1" style="padding-top: 10px">-</div>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" >
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="" >
+                                Bayar ditempat
+                            </label>
+                             <label>
+                                <input type="checkbox" value="" >
+                                Dikirim dari Indonesia
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                  <div class="col-sm-12">
+                      <p>PERINGKAT PRODUK</p>
+                  </div>
+                  
+                </div>
+            </div>
+            
+        </div>

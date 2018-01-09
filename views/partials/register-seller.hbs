@@ -1,0 +1,160 @@
+<div role="tabpanel" class="tab-pane active" id="penjual" 
+data-bind="event:{load:regs.loadRegisterSeller()}">
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <input class="form-control" 
+                    style="width:100%" 
+                    type="text" 
+                    placeholder="username" 
+                    data-bind="value:regs.username,
+                    event:{change:regs.cekUsername}">
+                    <strong><p class="exception" 
+                    id="username" data-bind="text:regs.usernameException"></p></strong> 
+                    <p></p>
+                </div>
+                <div class="col-md-6">
+                    <input type="email" 
+                    class="form-control" 
+                    placeholder="Email"
+                     data-bind="value:regs.email,
+                    event:{change:regs.cekEmail}">
+                    <strong>
+                        <p class="exception" 
+                    data-bind="text:regs.emailException"></p></strong> 
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-md-6">
+                     <input class="form-control" 
+                     style="width:100%"
+                     placeholder="company name"
+                     data-bind="value:regs.companyName">
+                     <p></p>
+                </div>
+                <div class="col-md-6">
+                    <input class="form-control" 
+                    style="width:100%" type="text" 
+                    placeholder="address" 
+                    data-bind="value:regs.address">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input class="form-control" 
+                    
+                    style="width:100%" 
+                    type="text"
+                    placeholder="name"
+                    data-bind="value:regs.nama, 
+                    event:{change:regs.cekNama}">
+                    <strong>
+                        <p class="exception"
+                            data-bind="text:regs.namaException">
+                        </p>
+                    </strong>
+                </div>
+                 <div class="col-md-6">
+                     <input type="text" class="form-control" 
+                     placeholder="phone" name="phone"
+                     data-bind="value:regs.phone,
+                     event:{change:regs.cekPhone}">
+                      <strong>
+                          <p class="exception" 
+                            data-bind="text:regs.phoneException">
+                            </p>
+                        </strong> 
+                            <p></p>
+                 </div>
+                 
+            </div>
+             <div class="row">
+                <div class="col-md-6">
+                    <label><input type="radio" name="optradio">PRIA</label>
+                    <label style="padding-left:60px; padding-right:93px"><input type="radio" name="optradio">WANITA</label>
+                </div>
+                <div class="col-md-6">
+                    {{!-- <select name="province" id="province" class="form-control">
+                        <option value="sumatera utara">Sumatera Utara</option>
+                    </select> --}}
+                    <select class="form-control" 
+                       data-bind="
+                        options:regs.provinsi,
+                        optionsText: 'provinsi',
+                        optionsValue: 'id',
+                        value:regs.provinceId,
+                        event:{change:regs.changeProvince}
+                        ">
+                        </select>
+                </div>
+            </div> 
+             <div class="row">
+                <div class="col-md-6">
+                    {{!-- <input class="form-control" 
+                    style="width:100%" type="text" 
+                    name="district" placeholder="district"> --}}
+                     <select class="form-control" 
+                       data-bind="
+                        options:regs.kabupaten,
+                        optionsText: 'district',
+                        optionsValue: 'id',
+                        value:regs.kabupatenId,
+                        event:{change:regs.changeDistrict}">
+                    </select>
+                </div>
+                  <div class="col-md-6">
+                    <div class="col-md-9" style="padding-left: 0">
+                        <select class="form-control" 
+                       data-bind="
+                        options:regs.kecamatan,
+                        optionsText: 'sub_district',
+                        optionsValue: 'id',
+                        value:regs.kecamatanId,
+                        event:{change:regs.changeSubDistrict}">
+                    </select>
+                    </div>
+                    <div class="col-md-3" style="padding-left: 0; padding-right: 0">
+                       <input type="text" class="form-control" 
+                       data-bind="value:regs.postal_code">
+                    </div>
+                   
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="col-md-12">
+                    <textarea style="height: 200px" 
+                    class="form-control" rows="3" 
+                    data-bind="value:regs.desc"
+                    placeholder="Company Description"></textarea>
+                </div>
+            </div>
+         
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="password"
+                    placeholder="password" 
+                    data-bind="value:regs.password,
+                    event:{change:regs.cekPassword}"
+                    class="form-control">
+                     <strong>
+                            <p class="exception" 
+                            data-bind="text:regs.passwordException"></p></strong> 
+                            <p></p>
+                </div>
+                <div class="col-md-6">
+                    <input type="password" 
+                     data-bind="value:regs.cpassword,
+                      event:{change :regs.cekConfirmPassword}"
+                    placeholder="Confirm password" 
+                    class="form-control">
+                     <strong><p class="exception" 
+                            data-bind="text:regs.confirmPasswordException"></p></strong> 
+                            <p></p>
+                </div>
+            </div>
+            <br>
+              <button class="btn btn-primary" style="width:99%; margin-bottom:20px"
+              data-bind="click:regs.checkout">SUBMIT</button>
+            </div>

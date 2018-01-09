@@ -1,0 +1,36 @@
+<div class="modal fade" id="email-telepon" style="padding-top: 130px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Email dan Telepon</h4>
+            </div>
+            <div class="modal-body">
+               
+                <div class="row">
+                    <div class="col-md-3" style="padding-left: 0">
+                       Email
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" data-bind="value:prof.email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3" style="padding-left: 0">
+                       Telepon
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" data-bind="value:prof.phone">
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bind="click:prof.saveEditInformasiUmum">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

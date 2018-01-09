@@ -1,0 +1,52 @@
+<style>
+    #table tr:nth-child(even){
+        background-color: #eee;
+    }
+    thead tr{
+        background-color: #2b96b6 !important;color: white
+        
+    }
+    #navLogo{
+        visibility: visible;
+    }    
+</style>
+{{>dashboard_admin}}
+<div class="col-lg-9" style="padding-left: 40px" data-bind="attr:{load:adm.loadAdmin()}">
+<div class="panel panel-default">
+      <div class="panel-heading">
+            <h3 class="panel-title">Pengaturan Katalog</h3>
+      </div>
+      <div class="panel-body">
+          <div class="table-responsive">
+              <table class="table table-hover table-bordered">
+                  <thead>
+                      <tr>
+                          <th>Judul</th>
+                          <th>Creator</th>
+                           <th>Image</th>
+                            <th>Deskripsi</th>
+                            <th><i class="fa fa-gear fa-2x"></i></th>
+                            
+                      </tr>
+                  </thead>
+                  <tbody id="table">
+                      <!-- ko foreach:adm.katalog -->
+                      <tr>
+                        <td data-bind="text:title"></td>
+                        <td data-bind="text:upload_by"></td>
+                        <td><img data-bind="attr:{src:'/dirbis.png'}" style="width: 100px"></td>
+                        <td data-bind="text:desc"></td>
+                        <td>
+                            <button class="btn btn-danger btn-sm">Delete</button>
+                        </td>
+                      </tr>
+                      <!-- /ko -->
+                  </tbody>
+              </table>
+          </div>
+          
+      </div>
+</div>
+</div>
+
+

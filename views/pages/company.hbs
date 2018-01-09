@@ -1,0 +1,412 @@
+{{!-- <style>
+  #actScrolling::-webkit-scrollbar
+  {
+    width: 12px;
+    background-color: transparent;
+  }
+   #contactScrolling::-webkit-scrollbar
+  {
+    width: 12px;
+    background-color: transparent;
+  }
+  .w3-tag.w3-small.w3-theme{
+      padding: 10px
+  }
+  .pad10{
+      padding: 10px;
+      border-radius: 5px
+  }
+</style>
+
+<div class="w3-container w3-content"
+data-bind="event:{load:c.getAllCompany()}"
+style="max-width:1400px;margin-top:10px">    
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+     &nbsp;
+    </div>
+    
+
+
+    <!-- Middle Column -->
+        <div class="w3-col m6">
+        <div class="w3-row-padding">
+            <div class="w3-col m12">
+            <div class="w3-card-2 w3-round w3-white">
+                <div class="w3-container w3-padding">
+                    <h6 class="w3-opacity">Cari Perusahaan</h6>
+                    <div style="padding-bottom: 10px">
+                         <input type="search" data-bind="value:c.currentFilter, valueUpdate : 'afterkeydown', 
+                            event: { 'keyup': c.searchBox }" class="form-control" placeholder="Search">
+                    </div>
+                    <p></p>
+                </div>
+            
+            </div>
+            </div>
+        </div>
+        <header id="portfolio">
+                <div class="w3-section w3-bottombar w3-padding-16" style="padding-top: 0!important; margin-top: 0!important">
+                    <span class="w3-margin-right" style="float: left">Filter:</span> 
+                    <div class="dropdown w3-white" style="float: left; margin-right: 4px">
+                        <button class="w3-button w3-white dropdown-toggle w3-white" 
+                        type="button" data-toggle="dropdown">Kategori
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <!-- ko foreach:prod.kategoriOptions -->
+                            <li><a href="#" 
+                            data-bind="text:$data,click:$root.prod.filterKategori"></a></li>
+                            <!-- /ko -->
+                        </ul>
+                    </div>
+
+                    
+                        <div class="dropdown w3-white" style="float: left; margin-right: 4px">
+                        <button class="w3-button w3-white dropdown-toggle w3-white" 
+                        type="button" data-toggle="dropdown">Urutkan
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <!-- ko foreach:pc.kategoriSort -->
+                            <li><a href="#" 
+                            data-bind="text:kategori,
+                                click:$root.prod.urutkan"></a></li>
+                            <!-- /ko -->
+                        </ul>
+                    </div>
+                    <button class="w3-button w3-white" id="allNav"
+                    style="float: left margin-right: 4px"
+                        data-bind="click:prod.all">Semua</button>
+                
+                        <div class="w3-button w3-white w3-hide-small" style="float: right; width: 400px">
+                            <input type="text" style=" height: 30px" 
+                            data-bind="value:prod.currentFilter,valueUpdate:'keyup', event:{keyup:prod.searchBox}" 
+                            class="form-control" placeholder="Cari Produk" autocomplete="off">
+                        </div>
+                </div>
+            </header>
+        
+                <!-- ko foreach:c.company-->
+                <br>
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                    <div class="w3-card-2 w3-round w3-white">
+                        <div class="w3-container w3-padding">
+                            <a href="#" data-bind="click:$root.c.viewProfile"><h6 class="w3-opacity" data-bind="text:company_name"></h6></a>
+                                <table class="table table-condensed table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                            <img data-bind="attr:{src:photo}" 
+                                                    style="height: 100px; width: 100px"
+                                                    class="img-responsive" alt="Image">
+                                            </td>
+                                            <td>
+                                                <p style="word-wrap: break-word; width:430px; text-align: left; align-content: center" data-bind="text:company_desc"></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> <a href="#"><span class="w3-tag w3-small w3-theme pad10" >Info Kontak</span></a></td>
+                                            <td> <a href="#"><span class="w3-tag w3-small w3-theme pad10">Minta Penawaran</span></a>
+                                                <a href="#"><span class="w3-tag w3-small w3-theme pad10">Tambahkan Ke Favorit</span></a>
+                                                <a href="#"><span class="w3-tag w3-small w3-theme pad10">Email</span></a>
+                                                <a href="#"><span class="w3-tag w3-small w3-theme pad10">Selengkapnya</span></a>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button data-bind="click:$root.c.katalogToggle" 
+                                    class="w3-button w3-block w3-theme-l1 w3-left-align"
+                                    style="border-radius: 5px;"    >
+                                    <i class="fa fa-book"></i> Katalog</button>
+                                    <div data-bind="attr:{id:'katalog-'+id}" class="w3-hide w3-container" >
+                                        <div class="w3-row-padding" >
+                                                <table class="table table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Title</th>
+                                                            <th>Deskripsi</th>
+                                                            <th>Download</th>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!-- ko foreach:$root.c.getKatalog(username) -->
+                                                        <tr>
+                                                            <td data-bind="text:title"></td>
+                                                            
+                                                            <td >
+                                                                <p style="width: 300px; 
+                                                                word-wrap: break-word;"data-bind="text:'assjosjjskjsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss'"></p>
+                                                            </td>
+                                                            <td>
+                                                                <a href="#" data-bind="attr:{href:file}"><i class="fa fa-download fa-2x" style="color: blue"></i></a>
+                                                            </td>   
+                                                        </tr>
+                                                        <!-- /ko -->
+                                                        
+                                                    </tbody>
+                                                </table>
+                                                
+                                        </div>
+                                    </div>
+                            <p></p>
+                        </div>
+                    
+                    </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+        </div>
+        <br>
+    </div>
+    <!-- End Middle Column -->
+    
+     <!-- Right Column -->
+    <div class="w3-col m2" style="">
+      
+    <!-- End Right Column -->
+    </div> 
+   
+  <!-- End Grid -->
+  </div>
+  <script>
+function openNav() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+<!-- End Page Container -->
+</div>
+
+
+
+<div class="w3-card-2 w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Upcoming Events:</p>
+          <img src="/dirbis.png" alt="Forest" style="width:100%;">
+          <p><strong>Holiday</strong></p>
+          <p>Friday 15:00</p>
+          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+        </div>
+      </div>
+      <br>
+      <div class="w3-card-2 w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Friend Request</p>
+          <img src="/dirbis.png" alt="Avatar" style="width:50%"><br>
+          <span>Jane Doe</span>
+          <div class="w3-row w3-opacity">
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-green w3-section" title="Accept">
+                  <i class="fa fa-check"></i></button>
+            </div>
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-red w3-section" title="Decline">
+                  <i class="fa fa-remove"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      
+      <div class="w3-card-2 w3-round w3-white w3-padding-16 w3-center">
+        <p>ADS</p>
+      </div>
+      <br>
+      
+      <div class="w3-card-2 w3-round w3-white w3-padding-32 w3-center">
+        <p><i class="fa fa-bug w3-xxlarge"></i></p>
+      </div>
+ --}}
+
+
+<style>
+     /**** BASE ****/
+body {
+    color: #888;   
+}
+a {
+    color: #03a1d1;
+    text-decoration: none!important;
+}
+
+/**** LAYOUT ****/
+.list-inline>li {
+    padding: 0 10px 0 0;
+}
+.container-pad {
+    padding: 30px 15px;
+}
+
+
+/**** MODULE ****/
+.bgc-fff {
+    background-color: #fff!important;
+}
+.box-shad {
+    -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+    box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+}
+.brdr {
+    border: 1px solid #ededed;
+}
+
+/* Font changes */
+.fnt-smaller {
+    font-size: .9em;
+}
+.fnt-lighter {
+    color: #bbb;
+}
+
+/* Padding - Margins */
+.pad-10 {
+    padding: 10px!important;
+}
+.mrg-0 {
+    margin: 0!important;
+}
+.btm-mrg-10 {
+    margin-bottom: 10px!important;
+}
+.btm-mrg-20 {
+    margin-bottom: 20px!important;
+}
+
+/* Color  */
+.clr-535353 {
+    color: #535353;
+}
+
+
+
+
+/**** MEDIA QUERIES ****/
+@media only screen and (max-width: 991px) {
+    #property-listings .property-listing {
+        padding: 5px!important;
+    }
+    #property-listings .property-listing a {
+        margin: 0;
+    }
+    #property-listings .property-listing .media-body {
+        padding: 10px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    #property-listings .property-listing img {
+        max-width: 180px;
+    }
+}
+
+   </style>
+   
+    <div class="container-fluid" style="background-color:#e8e8e8" data-bind="event:{load:c.getAllCompany()}">
+        <div class="container container-pad" id="property-listings">
+            
+            <div class="row">
+              <div class="col-md-12">
+                <header id="portfolio">
+                <div class="w3-section w3-bottombar w3-padding-16" style="padding-top: 0!important; margin-top: 0!important">
+                    <span class="w3-margin-right" style="float: left">Filter:</span> 
+                    <div class="dropdown w3-white" style="float: left; margin-right: 4px">
+                        <button class="w3-button w3-white dropdown-toggle w3-white" 
+                        type="button" data-toggle="dropdown">Kategori
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <!-- ko foreach:prod.kategoriOptions -->
+                            <li><a href="#" 
+                            data-bind="text:$data,click:$root.prod.filterKategori"></a></li>
+                            <!-- /ko -->
+                        </ul>
+                    </div>
+
+                    
+                        <div class="dropdown w3-white" style="float: left; margin-right: 4px">
+                        <button class="w3-button w3-white dropdown-toggle w3-white" 
+                        type="button" data-toggle="dropdown">Urutkan
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <!-- ko foreach:pc.kategoriSort -->
+                            <li><a href="#" 
+                            data-bind="text:kategori,
+                                click:$root.prod.urutkan"></a></li>
+                            <!-- /ko -->
+                        </ul>
+                    </div>
+                    <button class="w3-button w3-white" id="allNav"
+                    style="float: left margin-right: 4px"
+                        data-bind="click:prod.all">Semua</button>
+                
+                        <div class="w3-button w3-white w3-hide-small" style="float: right; width: 400px">
+                            <input type="text" style=" height: 30px" 
+                            data-bind="value:prod.currentFilter,valueUpdate:'keyup', event:{keyup:prod.searchBox}" 
+                            class="form-control" placeholder="Cari Produk" autocomplete="off">
+                        </div>
+                </div>
+            </header>
+              </div>
+            </div>
+            
+            <div class="row">
+               <!-- ko foreach:c.company -->
+                <div class="col-sm-6"> 
+                    <!-- Begin Listing: 609 W GRAVERS LN-->
+                    <div class="brdr bgc-fff pad-10 box-shad btm-mrg-20 property-listing" 
+                    style="min-height: 200px; max-height:250px ;">
+                        <div class="media">
+                            <a class="pull-left" href="#" target="_parent">
+                            <img alt="image" class="img-responsive" style="background-repeat: round; 
+                            height: 200px; width: 200px" data-bind="attr:{src:$data.photo}" ></a>
+                            <div class="clearfix visible-sm"></div>
+
+                            <div class="media-body fnt-smaller">
+                                <h4 class="media-heading">
+                                  <a href="#" target="_parent" > <span data-bind="text:company_name,click:$root.c.viewProfile">
+
+                                  </span> <small class="pull-right" data-bind="text:'Sejak'"></small></a></h4>
+                                <ul class="list-inline mrg-0 btm-mrg-10 clr-535353">
+                                    <li>
+                                        <i class="fa fa-user fa-fw"></i> <span data-bind="text:username"></span>
+                                    </li>
+                                    <li style="list-style: none">|</li>
+                                    <li>
+                                        <i class="fa fa-envelope fa-fw"></i>  <span data-bind="text:email"></span>
+                                    </li>
+                                    <li style="list-style: none">|</li>
+                                    <li>
+                                       <i class="fa fa-phone fa-fw"></i> <span data-bind="text:phone"></span>
+                                    </li>
+                                </ul>
+                                <span class="fnt-smaller fnt-lighter fnt-arial" >
+                                    <i class="fa fa-map-marker  fa-fw"></i>
+                                    <span data-bind="text:address"></span>
+                                </span>
+                                <p class="hidden-xs"  style=" text-overflow: ellipsis;
+                                    overflow: hidden; 
+                                    width: 320px; 
+                                    height: 30px; 
+                                    white-space: nowrap;" data-bind="text:company_desc">
+                                </p>
+                                 <p data-bind="attr:{id:'rating-'+$data.username}"></p>
+                                <span data-bind="event:{load:$root.c.getRating(username)}"></span>
+                                
+                            </div>
+                        </div>
+                    </div><!-- End Listing-->
+                </div><!-- End Col -->
+                <!-- /ko -->
+            </div><!-- End row -->
+        </div><!-- End container -->
+    </div>
+
+<div id="mod">
+    <span id="ctx"></span>
+</div>
+

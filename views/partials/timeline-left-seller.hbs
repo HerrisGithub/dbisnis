@@ -1,0 +1,33 @@
+<div class="w3-col m3">
+      <!-- Profile -->
+      <div class="w3-card-2 w3-round w3-white">
+        <div class="w3-container">
+         <h4 class="w3-center" data-bind="text:ts.nama"></h4>
+         <p style="padding-left: 30%">
+             <img data-bind="attr:{src:t.photo}" 
+             class="w3-circle" 
+             style="height:106px;width:106px" 
+             alt="Avatar">
+             </p>
+         <hr>
+         <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme">
+            </i><span data-bind="text:t.username"></span>
+            <i class="fa fa-user fa-fw w3-margin-right w3-text-theme">
+            </i><span data-bind="text:t.company_name"></span>
+          </p>
+         <p style="word-wrap: break-word">
+             <i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> 
+            <span data-bind="text:t.address()+' , '+t.province()+' , '+t.postal_code()"></span>
+        </p>
+         <p>
+             <i class="fa fa-phone fa-fw w3-margin-right w3-text-theme"></i>
+            <span data-bind="text:t.phone"></span>
+            &nbsp;
+      <i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i><span data-bind="text:t.email"></span>
+        </p>
+        </div>
+      </div>
+      <br>
+      
+     
+    </div>

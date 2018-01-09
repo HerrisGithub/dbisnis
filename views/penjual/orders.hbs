@@ -1,0 +1,278 @@
+<br>
+{{> menu}}
+<div class="col-md-10" data-bind="attr:{load:o.loadPenjual()}">
+    <strong>
+    <div class="row" style="padding-left: 6px">
+        <div class="container col-md-11" style="background-color: white ">
+            <div class="panel-body">
+                <h3><strong>Orderan</strong></h3>
+                    <hr style="border-width: 2px; border-color: #3498db">
+            </div>
+        </div>
+
+        <div class="product-layout col-md-11" 
+        style="background-color: white; 
+        margin-right: 300px; 
+        padding-left: 11px; 
+        padding-top: 0px;
+        min-height: 500px; border-radius: 0px">
+        <br>  
+          
+         <div role="tabpanel">
+             <!-- Nav tabs -->
+             <ul class="nav nav-tabs" role="tablist">
+                 <li role="presentation" class="active">
+                     <a href="#belumbayar" aria-controls="home" role="tab" 
+                     data-toggle="tab">Belum Kirim</a>
+                 </li>
+                 <li role="presentation">
+                     <a href="#dikemas" aria-controls="tab" role="tab" data-toggle="tab">Dikemas</a>
+                 </li>
+                 <li role="presentation">
+                     <a href="#dikirim" aria-controls="tab" role="tab" data-toggle="tab">Dikirim</a>
+                 </li>
+                 <li role="presentation">
+                     <a href="#pengembalian" aria-controls="tab" role="tab" data-toggle="tab">Pengembalian</a>
+                 </li>
+             </ul>
+             <!-- Tab panes -->
+             <div class="tab-content">
+                 <br>
+
+                 {{!-- belum bayar --}}
+                 <div role="tabpanel" class="tab-pane active" id="belumbayar" >
+                    <!-- ko foreach:o.uniqOrderId -->
+                     <div class="col-md-12">
+                        <div class="panel panel-default">
+                           <div class="panel-heading">
+                                 <h3 class="panel-title"  data-bind="text:($index()+1)+'. Order ID: '+order_id"></h3>
+                                 <h3  class="panel-title" >
+                                     <span data-bind="text:$root.o.getOrdersById(order_id).name"></span>, 
+                                     <i class="fa fa-user"></i>
+                                     <span data-bind="text:$root.o.getOrdersById(order_id).buyer"></span>, 
+                                     <i class="fa fa-envelope"></i>
+                                     <span data-bind="text:$root.o.getOrdersById(order_id).email"></span>
+                                 </h3>
+                           </div>
+                           <div class="panel-body">
+                                <table class="table table-bordered table-hover" style="font-variant-caps: all-petite-caps">
+                                <thead style="background-color: #3498db; color: white">
+                                    <tr>
+                                        <th style="border-color: #3498db">detail id</th>
+                                        <th style="border-color: #3498db"><i class="fa fa-image"></i></th>
+                                        <th style="border-color: #3498db">Nama Produk</th>
+                                        <th style="border-color: #3498db">Qty</th>
+                                        <th style="border-color: #3498db; text-align: right">Harga</th>
+                                        <th style="border-color: #3498db; text-align: right">total</th>
+                                         <th style="border-color: #3498db; text-align: right"><i class="fa fa-gear fa-2x"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <!-- ko foreach:$root.o.getDetailsBelumProses(order_id) --> 
+                                    <tr>
+                                         <td data-bind="text:detail_id"></td>
+                                         <td><img data-bind="attr:{src:gambar}" style="max-width: 100px;max-height: 100px;"></td>
+                                         <td data-bind="text:product_name"></td>
+                                         <td data-bind="text:qty"></td>
+                                         <td data-bind="text:price"></td>
+                                         <td data-bind="text:'Rp. '+$root.p.formatLargeNumber(qty*price)"></td>
+                                         <td><button class="btn btn-success btn-sm" data-bind="click:$root.o.kemas">Kemas Sekarang</button>
+                                         <button class="btn btn-danger btn-sm" data-bind="click:$root.o.batal">Batalkan</button>
+                                         </td>
+                                    </tr>                                        
+                                <!-- /ko -->
+
+                                </tbody>
+                        </table>
+                           </div>
+                        </div>
+                        <br>
+                     </div>
+                     <!-- /ko -->
+                     <!-- ko ifnot:o.uniqOrderId().length -->
+                            Tidak Ada Orderan Yang Belum Dikirim
+                     <!-- /ko -->
+                 </div>
+                 {{!-- end belum bayar --}}
+
+                 <div role="tabpanel" class="tab-pane" id="dikemas">
+                       <!-- ko foreach:o.uniqKemasId -->
+                     <div class="col-md-12">
+                        <div class="panel panel-default">
+                           <div class="panel-heading">
+                                 {{!-- <div class="pull-right">
+                                     <button class="btn btn-danger btn-sm">Batalkan</button>
+                                 </div>
+                                 <div class="pull-right">&nbsp;</div>
+                                 <div class="pull-right">
+                                     <button class="btn btn-success btn-sm" data-bind="click:$root.o.kemas">Kemas Sekarang</button>
+                                 </div> --}}
+                                  
+                                 <h3 class="panel-title"  data-bind="text:($index()+1)+'. Order ID: '+order_id"></h3>
+                                 <h3  class="panel-title" >
+                                     <span data-bind="text:$root.o.getOrdersById(order_id).name"></span>, 
+                                     <i class="fa fa-user"></i>
+                                     <span data-bind="text:$root.o.getOrdersById(order_id).buyer"></span>, 
+                                     <i class="fa fa-envelope"></i>
+                                     <span data-bind="text:$root.o.getOrdersById(order_id).email"></span>
+                                     
+                                 </h3>
+                                 
+                           </div>
+                           <div class="panel-body">
+                                <table class="table table-bordered table-hover" style="font-variant-caps: all-petite-caps">
+                                <thead style="background-color: #3498db; color: white">
+                                    <tr>
+                                        <th style="border-color: #3498db">detail id</th>
+                                        <th style="border-color: #3498db"><i class="fa fa-image"></i></th>
+                                        <th style="border-color: #3498db">Nama Produk</th>
+                                        <th style="border-color: #3498db">Qty</th>
+                                        <th style="border-color: #3498db; text-align: right">Harga</th>
+                                        <th style="border-color: #3498db; text-align: right">total</th>
+                                         <th style="border-color: #3498db;"><i class="fa fa-gear fa-2x"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <!-- ko foreach:$root.o.getDetailsKemas(order_id) --> 
+                                    <tr>
+                                         <td data-bind="text:detail_id"></td>
+                                         <td><img data-bind="attr:{src:gambar}" style="max-width: 100px;max-height: 100px;"></td>
+                                         <td data-bind="text:product_name"></td>
+                                         <td data-bind="text:qty"></td>
+                                         <td data-bind="text:price"></td>
+                                         <td data-bind="text:'Rp. '+$root.p.formatLargeNumber(qty*price)"></td>
+                                         <td><button class="btn btn-success btn-sm" data-bind="click:$root.o.kirim">Kirim</button>
+                                         </td>
+                                    </tr>                                        
+                                <!-- /ko -->
+
+                                </tbody>
+                        </table>
+                           </div>
+                     </div>
+                     <br>
+                     </div>
+                     <!-- /ko -->
+                      <!-- ko ifnot:o.uniqKemasId().length -->
+                        Tidak Ada Orderan Yang Sedang Dikemas
+                      <!-- /ko -->
+                </div>
+             
+             <div role="tabpanel" class="tab-pane" id="dikirim">
+                       <!-- ko foreach:o.uniqKirimId -->
+                     <div class="col-md-12">
+                        <div class="panel panel-default">
+                           <div class="panel-heading">
+                                 <h3 class="panel-title"  data-bind="text:($index()+1)+'. Order ID: '+order_id"></h3>
+                                 <h3  class="panel-title" >
+                                     <span data-bind="text:$root.o.getOrdersById(order_id).name"></span>, 
+                                     <i class="fa fa-user"></i>
+                                     <span data-bind="text:$root.o.getOrdersById(order_id).buyer"></span>, 
+                                     <i class="fa fa-envelope"></i>
+                                     <span data-bind="text:$root.o.getOrdersById(order_id).email"></span>
+                                     
+                                 </h3>
+                                 
+                           </div>
+                           <div class="panel-body">
+                                <table class="table table-bordered table-hover" style="font-variant-caps: all-petite-caps">
+                                <thead style="background-color: #3498db; color: white">
+                                    <tr>
+                                        <th style="border-color: #3498db">detail id</th>
+                                        <th style="border-color: #3498db"><i class="fa fa-image"></i></th>
+                                        <th style="border-color: #3498db">Nama Produk</th>
+                                        <th style="border-color: #3498db">Qty</th>
+                                        <th style="border-color: #3498db; text-align: right">Harga</th>
+                                        <th style="border-color: #3498db; text-align: right">total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <!-- ko foreach:$root.o.getDetailsKirim(order_id) --> 
+                                    <tr>
+                                         <td data-bind="text:detail_id"></td>
+                                         <td><img data-bind="attr:{src:gambar}" style="max-width: 100px;max-height: 100px;"></td>
+                                         <td data-bind="text:product_name"></td>
+                                         <td data-bind="text:qty"></td>
+                                         <td data-bind="text:price"></td>
+                                         <td data-bind="text:'Rp. '+$root.p.formatLargeNumber(qty*price)"></td>
+                                      
+                                    </tr>                                        
+                                <!-- /ko -->
+
+                                </tbody>
+                        </table>
+                           </div>
+                     </div>
+                     <br>
+                     </div>
+                     
+                     
+                     <!-- /ko -->
+                       <!-- ko ifnot:o.uniqKirimId().length -->
+                        Tidak Ada Orderan Yang Telah Dikirim
+                       <!-- /ko -->
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="pengembalian">
+                       <!-- ko foreach:o.uniqKembaliId -->
+                     <div class="col-md-12">
+                        <div class="panel panel-default">
+                           <div class="panel-heading">
+                                 <h3 class="panel-title"  data-bind="text:($index()+1)+'. Order ID: '+order_id"></h3>
+                                 <h3  class="panel-title" >
+                                     <span data-bind="text:$root.o.getOrdersById(order_id).name"></span>, 
+                                     <i class="fa fa-user"></i>
+                                     <span data-bind="text:$root.o.getOrdersById(order_id).buyer"></span>, 
+                                     <i class="fa fa-envelope"></i>
+                                     <span data-bind="text:$root.o.getOrdersById(order_id).email"></span>
+                                 </h3>
+                           </div>
+                           <div class="panel-body">
+                                <table class="table table-bordered table-hover" style="font-variant-caps: all-petite-caps">
+                                <thead style="background-color: #3498db; color: white">
+                                    <tr>
+                                        <th style="border-color: #3498db">detail id</th>
+                                        <th style="border-color: #3498db"><i class="fa fa-image"></i></th>
+                                        <th style="border-color: #3498db">Nama Produk</th>
+                                        <th style="border-color: #3498db">Qty</th>
+                                        <th style="border-color: #3498db; text-align: right">Harga</th>
+                                        <th style="border-color: #3498db; text-align: right">total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <!-- ko foreach:$root.o.getDetailsKembali(order_id) --> 
+                                    <tr>
+                                         <td data-bind="text:detail_id"></td>
+                                         <td><img data-bind="attr:{src:gambar}" style="max-width: 100px;max-height: 100px;"></td>
+                                         <td data-bind="text:product_name"></td>
+                                         <td data-bind="text:qty"></td>
+                                         <td data-bind="text:price"></td>
+                                         <td data-bind="text:'Rp. '+$root.p.formatLargeNumber(qty*price)"></td>
+                                         
+                                    </tr>                                        
+                                <!-- /ko -->
+
+                                </tbody>
+                        </table>
+                           </div>
+                     </div>
+                     <br>
+                     </div>
+                     
+                     
+                     <!-- /ko -->
+                        <!-- ko ifnot:o.uniqKembaliId().length -->
+                        Tidak Ada Orderan Yang Telah Dikembalikan
+                        <!-- /ko -->
+                </div>
+             
+         </div>
+         
+          <br>
+          <br>
+          <br>
+          
+        </div>
+    </div>
+    </strong>
+</div>        

@@ -1,0 +1,64 @@
+<style>
+    #table tr:nth-child(even){
+        background-color: #eee
+    }
+    thead tr{
+        background-color: #2b96b6 !important;color: white
+    }
+    
+</style>
+<br>
+{{> dashboard_pembeli}}
+<div class="col-lg-9">
+<div class="panel panel-default">
+      <div class="panel-heading">
+            <h3 class="panel-title">Permintaan</h3>
+      </div>
+      <div class="panel-body">
+          <div class="table-responsive">
+              <table class="table table-hover table-bordered">
+                  <thead>
+                      <tr>
+                          <th><i class="fa fa-picture-o fa-2x"></i></th>
+                          <th>Nama</th>
+                           <th>Kategori</th>
+                           <th>Kuantitas</th>
+                           <th>Harga (Rp)</th>
+                           <th>Tujuan</th>
+                           <th>Deskripsi</th>
+                            <th><i class="fa fa-gear"></i></th>
+                              <th><i class="fa fa-shopping-cart"></i></th>
+                      </tr>
+                  </thead>
+                  <tbody id="table">
+                      {{#each permintaan}}
+                      <tr>
+                        <td><img src="{{this.lampiran}}" style="width: 50px; height: 50px" ></td>
+                        <td>{{this.name}}</td> 
+                        <td>{{this.kategori}}</td>
+                        <td style="text-align: right">{{#format_amount this.kuantitas}}{{/format_amount}}</td> 
+                        <td style="text-align: right">{{#format_amount this.harga}}{{/format_amount}}</td>        
+                        <td>{{this.address}},{{this.district}},{{this.sub_district}},{{this.province}},{{this.zip_code}}</td>  
+                        <td>{{this.desc}}</td>      
+                        <td>
+                            {{#ifCond status '<' 2}}
+                                <button class="btn btn-danger btn-sm"><a href="/penawaran/tolak/{{this.id}}" style="color: white">Batal</a></button>
+                            {{else}}
+                                <button class="btn btn-danger btn-sm" disabled>Batal</button>
+                            {{/ifCond}}
+                        </td>
+                        <td>
+                            {{#ifCond status '<' 3}}
+                                <button class="btn btn-info btn-sm"><a href="/penawaran/bayar/{{this.id}}" style="color: white">Bayar</a></button>
+                            {{/ifCond}}
+                        </td>
+                      </tr>
+                      {{/each}}
+                  </tbody>
+              </table>
+          </div>
+          
+      </div>
+</div>
+</div>
+

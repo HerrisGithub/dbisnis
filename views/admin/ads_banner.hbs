@@ -1,0 +1,199 @@
+{{> dashboard_admin}}
+<div class="col-lg-1" style="padding: 0; margin: 0; margin-left: 27px; 
+    margin-right: 2px; background-color: white; min-height: 700px">
+    <ul class="list-group">
+        <a href="/protected/ads/banner/new"><li class="list-group-item"> <i class="glyphicon glyphicon-plus"></i>NEW</li></a>
+        <a href="/protected/ads/banner/edit"><li class="list-group-item"><i class="glyphicon glyphicon-edit"></i> EDIT</li></a>
+        <a href="/protected/ads/banner/auth"><li class="list-group-item"><i class="glyphicon glyphicon-upload"></i> AUTH</li></a>
+    </ul>
+</div>
+<div class="col-lg-8" style="padding: 0; margin: 0; background-color: white; min-height: 700px; width: 72.666667%">
+    {{#if new}}
+        <form method="post" class="form-horizontal" id="insert_form" 
+        enctype="multipart/form-data" action="/protected/ads/banner/new" data-toggle="validator">
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <div class="pull-right">
+                        <button id="frm_edit_product_save" class="btn btn-success" type="submit">Add Ads <i class="fa fa-plus"></i></button>
+                    </div>
+                    <h2>New Ads Banner</h2>
+                </div>
+                <div class="form-group">
+                    <label for="frm_product_title" class="col-sm-2 control-label">Ads title *</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="title" class="form-control" minlength="5" maxlength="200" value="{{product_title}}" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="title" class="col-sm-2 control-label">Attachment *</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="upload_file" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Permalink</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="permalink" id="frm_product_permalink" placeholder="Permalink for the article" value={{product_permalink}}>
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" id="validate_permalink" type="button">Validate</button>
+                                <button class="btn btn-warning" id="generate_permalink" type="button">Generate</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    {{/if}}
+     {{#if auth}}
+            <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr style="background-color: orange">
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Permalink</th>
+                            <th>Featured</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                               
+                        </tr>
+                    </thead>
+                    <tbody>
+                         {{#each data}}
+                            <tr>
+                                <td>{{this.id}}</td>
+                                <td>{{this.title}}</td>
+                                <td>{{this.permalink}}</td>
+                                <td>{{this.featured}}</td>
+                                <td><a href="{{this.image}}">{{this.image}}</a></td>
+                                <td><button class="btn btn-info" id="{{this.id}}" onclick="javascripts:publish(this)">Publish</button> <button class="btn btn-info" id="{{this.id}}" onclick="javascripts:unpublish(this)">UnPublish</button></td>
+
+                            </tr>
+                         {{/each}}
+                    </tbody>
+                </table>
+    {{/if}}
+    {{#if edit}}
+    <ul class="list-group">
+        <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr style="background-color: orange">
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Permalink</th>
+                            <th>Featured</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                               
+                        </tr>
+                    </thead>
+                    <tbody>
+                         {{#each data}}
+                            <tr>
+                                <td>{{this.id}}</td>
+                                <td>{{this.title}}</td>
+                                <td>{{this.permalink}}</td>
+                                <td>{{this.featured}}</td>
+                                <td><a href="{{this.image}}">{{this.image}}</a></td>
+                                <td><button class="btn btn-info" id="{{this.id}}" onclick="javascripts:edit(this)">EDIT</button></td>
+                            </tr>
+                         {{/each}}
+                    </tbody>
+                </table>
+    </ul>
+    {{/if}}
+</div>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Users Edit</h4>
+        </div>
+        <div class="modal-body">
+            <form action="/protected/ads/banner/edit" method="POST" enctype="multipart/form-data">
+            <div class="input-group">
+                <div class="input-group-addon">Title</div>
+                <input type="text" name="title" id="title" class="form-control" placeholder="title">
+            </div>
+            
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="featured" name="featured">
+                    Featured
+                </label>
+            </div>
+            {{!-- <div class="input-group Attachment">
+                <div class="input-group-addon">Attachment</div>
+                <input class="btn btn-info" type="file" id="upload_file" name="upload_file">
+            </div> --}}
+            <input type="text" id="id" hidden name="id">
+            <button class="btn btn-info" type="submit">SUBMIT</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+ <script>
+        var height = $('#page-wrapper').height();
+        var nav = $('.sidebar-dashboard').height(height);
+        $(document).scroll(function (e) {  
+		var top = ($(document).scrollTop());
+		var scrollCount =0;
+		if(top===0){
+			  $('.sidebar-dashboard').css({top:'160px'})
+		}
+		else{
+            $('.sidebar-dashboard').css({top:'60px'})
+		}
+
+		 $('.top-fixed').css({top:'10px'})
+	    });
+      function publish(obj){
+        var id = obj.id;
+        $.get('/protected/ads/banner/auth/'+id+'/true',function(){
+
+        }).done(function(){
+            window.location.reload();
+        }).fail(function(err){
+            console.log(err);
+        });
+    }
+      function unpublish(obj){
+        var id = obj.id;
+        $.get('/protected/ads/banner/auth/'+id+'/false',function(){
+
+        }).done(function(){
+            window.location.reload();
+        }).fail(function(err){
+            console.log(err);
+        });
+    }
+    function edit(obj){
+        var id = obj.id;
+        $.get('/protected/ads/banner/edit/'+id,function(data){
+        })
+        .done(function(data){
+           data = data[0];
+            $('#title').val(data.title);
+            $('#upload_title').val(data.image);
+            if(data.featured){
+                $('#featured').prop('checked',true);
+            }else{
+                  $('#featured').prop('checked',false);
+            }
+            $('#id').val(data.id);
+            $('#myModal').modal('show');
+        }).fail(function(err){
+            console.log(err);
+        })
+       
+    }
+</script>
+
+ 
+        

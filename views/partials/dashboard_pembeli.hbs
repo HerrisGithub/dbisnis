@@ -1,0 +1,121 @@
+<style>
+    table a:not(.btn), .table a:not(.btn) {
+        text-decoration: unset
+    }
+</style>
+
+
+<div class="col-md-2 nav navbar-top-links" style="padding-right: 0">
+     <ul class="list-group sidebar-dashboard">
+        <li class="list-group-item">
+            <div class="panel panel-default w3-theme-d5">
+                    <div class="panel-heading w3-theme">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" 
+                            data-parent="#accordion" 
+                            href="#permintaan"><span class="glyphicon glyphicon-list-alt">
+                            </span> Permintaan</a>
+                        </h4>
+                    </div>
+                    <div id="permintaan" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-plus"></span><a href="/pages/demands/new"> Buat</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon glyphicon-th-list"></span><a href="/pages/demands/get"> Daftar Permintaan</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>    
+        </li>
+        <li class="list-group-item" >
+            <div class="panel panel-default w3-theme-d5">
+                    <div class="panel-heading w3-theme">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#orders"><span class="glyphicon glyphicon-shopping-cart">
+                            </span> Pemesanan</a>
+                        </h4>
+                    </div>
+                    <div id="orders" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon glyphicon-th-list"></span><a href="/order/myorders"> Daftar Pemesanan</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>  
+
+        </li>
+        <li class="list-group-item">
+            <div class="panel panel-default w3-theme-d5">
+                    <div class="panel-heading w3-theme">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#katalog"><span class="glyphicon glyphicon-book">
+                            </span> Katalog</a>
+                        </h4>
+                    </div>
+                    <div id="katalog" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                {{!-- <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-usd"></span><a href="/protected/users"> Allow Access</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-user"></span><a href="http://www.jquery2dotnet.com">Customers</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-tasks"></span><a href="http://www.jquery2dotnet.com">Products</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-shopping-cart"></span><a href="http://www.jquery2dotnet.com">Shopping Cart</a>
+                                    </td>
+                                </tr> --}}
+                            </table>
+                        </div>
+                    </div>
+                </div>  
+
+        </li>
+         <li class="list-group-item">
+            <div class="panel panel-default w3-theme-d5">
+                    <div class="panel-heading w3-theme">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#profile"><span class="glyphicon glyphicon-book">
+                            </span> Profile</a>
+                        </h4>
+                    </div>
+                    <div id="profile" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-cog"></span><a href="/me/profile"> Edit</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>  
+
+        </li>
+    </ul> 
+                
+</div> 

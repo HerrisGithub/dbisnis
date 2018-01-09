@@ -1,0 +1,29 @@
+<div class="col-md-2;" style="float: right; margin-right: 20px">
+    {{#if session.user_type}}
+        {{#ifCond session.user_type '==' 'penjual'}}
+            <a href="/penjual/profile">
+                {{#if session.photo}}
+                    <img src="{{session.photo}}" id="{{session.users_name}}" 
+                    style="width: 60px; border-radius: 40px">
+                {{else}}
+                     <img src="/no-photo.png" id="{{session.users_name}}" 
+                    style="width: 60px; border-radius: 40px">
+                {{/if}}
+            </a>
+        {{/ifCond}}
+
+        {{#ifCond session.user_type '==' 'pembeli'}}
+            <a href="/me/profile">
+            {{#if session.photo}}
+                <img src="{{session.photo}}" id="{{session.users_name}}" 
+                style="width: 60px; border-radius: 40px">
+            {{else}}
+                        <img src="/no-photo.png" id="{{session.users_name}}" 
+                        style="width: 60px; border-radius: 40px">
+            {{/if}}
+            </a>
+            
+        {{/ifCond}}
+
+    {{/if}}
+</div>

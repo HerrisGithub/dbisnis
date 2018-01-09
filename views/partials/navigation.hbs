@@ -1,0 +1,312 @@
+
+<style>
+	ul{
+		list-style: none;
+	}
+	
+	.dropbtn {
+		background-color: #4CAF50;
+		color: white;
+		padding: 16px;
+		font-size: 16px;
+		border: none;
+		cursor: pointer;
+	}
+
+	.dropdown {
+		position: relative;
+		display: inline-block;
+	}
+
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: #f9f9f9;
+		min-width: 160px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		z-index: 1;
+	}
+
+	.dropdown-content a {
+		color: black;
+		width: 300px;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+	}
+
+	.dropdown-content a:hover {background-color: #f1f1f1}
+
+	.dropdown:hover .dropdown-content {
+		display: block;
+	}
+
+	.dropdown:hover .dropbtn {
+		background-color: #3e8e41;
+	}
+</style>
+<nav class="navbar navbar-default navbar-static-top" style="border-top: 10px; 
+				margin-bottom: 0px;
+				padding-bottom: 0;
+				padding-left: 0;
+				padding-right: 0;
+				margin-left: 0;
+				margin-right: 0;  
+				background-color: #232f3e; 
+				border-bottom: 1px solid rgba(0,0,0,0.25)">
+
+				<div id="toolbar">
+				<p></p>
+
+		<div class="container" id="jumbotron-head">
+			<div class="col-md-2" >
+				<div style="background-image: url('/dirbis.png'); padding: 5px; height: 50px; background-repeat: round; border-radius: 10px">&nbsp;</div>
+			</div>
+			<div class="col-md-5" style="padding-left: 0;">	
+				{{>toolbar-searchbox}}
+			</div>
+			{{!-- toolbar notif --}}
+			{{#if session.user_type}}
+				{{#ifCond session.user_type '!=' 'admin'}}
+					<div class="col-md-5" style="padding-top: 15px;">
+						<ul style="background-color: white">
+							<li style="float: left; padding-left: 10px; color: white">
+								<div class="dropdown">
+									<a href="#">
+										<span class="glyphicon glyphicon-envelope fa-2x"><span class="badge" 
+										data-bind="text:lay.messagesLength"></span></span>
+									</a>
+									<div class="dropdown-content" style="max-height: 600px; overflow: auto; padding: 20px; width: 430px">
+											<table class="table">
+												<tbody>
+													<!-- ko foreach:lay.messages -->
+														<tr data-bind="style:{backgroundColor:color},click:$root.lay.openMessage;">
+																<td><img data-bind="attr:{src:profile.photo}" style="width: 30px; height: 20px"></td>
+																<td><span data-bind="text:creator" style="color:grey"></span></td>
+																<td><small style="color: grey" data-bind="text:' '+subject"></small></td>
+														</tr>
+														<tr style="height: 2px">&nbsp;</tr>
+
+													<!-- /ko -->
+												</tbody>
+											</table>
+									</div>
+								</div>
+							</li>
+							<li style="float: left; padding-left: 10px; color: white">
+									<div class="dropdown">
+								<a href="#">
+									<span class="glyphicon glyphicon-comment fa-2x"><span class="badge" data-bind="text:$root.lay.chatsLength"></span></span>
+								</a>
+								<div class="dropdown-content" style="max-height: 700px; overflow: auto; padding: 20px; width: 430px">
+											<table class="table" style="color:black">
+												<tbody>
+													<!-- ko foreach:lay.chats -->
+													<!-- ko if:is_read === 0 -->
+														<tr style="background-color: #eeb; border-style: solid; height: 100px; border-color: white; border-radius: 200px" data-bind="click:$root.lay.chatss">
+															<td style="height: 60px; width: 60px">
+																<img data-bind="attr:{src:$root.lay.getProf($data.creator).photo}" 
+																style="width:60px; height: 60px; border-radius: 60px">
+															</td>
+															<td style="height: 60px; width: 60px;">
+																<div style="height: 100%">
+																	<div class="row">
+																<!-- ko if:$root.lay.getProf($data.creator).company_name -->
+																	<p><strong data-bind="text:$root.lay.getProf($data.creator).company_name"></strong></p>
+																<!-- /ko -->
+																<!-- ko ifnot:$root.lay.getProf($data.creator).company_name -->
+																	<p><strong data-bind="text:$root.lay.getProf($data.creator).fullname"></strong></p>
+																<!-- /ko -->
+																</div>
+																	<div class="row">
+																		<small>askajsajsajskjkjaskjaksjk</small>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													<!-- /ko -->
+													<!-- ko ifnot:is_read === 0 -->
+															<tr data-bind="click:$root.lay.chatss" style="border-style: solid; height: 100px; border-color: white; border-radius: 200px">
+																<td style="height: 60px; width: 60px">
+																	<img data-bind="attr:{src:$root.lay.getProf($data.creator).photo}" style="width:60px; height: 60px;
+																	padding: 0; 
+																	border-radius: 100px">
+																</td>
+																<td style="height: 60px; width: 60px;">
+																	<div style="height: 100%">
+																	<div class="row">
+																	<!-- ko if:$root.lay.getProf($data.creator).company_name -->
+																		<p><strong data-bind="text:$root.lay.getProf($data.creator).company_name"></strong></p>
+																	<!-- /ko -->
+																	<!-- ko ifnot:$root.lay.getProf($data.creator).company_name -->
+																		<p><strong data-bind="text:$root.lay.getProf($data.creator).fullname"></strong></p>
+																	<!-- /ko -->
+																	</div>
+																	<div class="row">
+																		<small>askajsajsajskjkjaskjaksjk</small>
+																	</div>
+																	</div>
+																</td>
+															</tr>
+													
+													<!-- /ko -->
+
+
+
+													{{!-- <!-- ko if: ($index() === ($parent.lay.chats().length - 1)) -->
+														<tr>
+															<td>Lihat Semuanya</td>
+														</tr>
+													<!-- /ko --> --}}
+													<!-- /ko -->
+												</tbody>
+											</table>
+									</div>
+								</div>
+							</li>
+							<li style="float: left; padding-left: 10px; color: white">
+								<div class="dropdown">
+								<a href="#">
+									<span class="glyphicon glyphicon-shopping-cart fa-2x"><span class="badge" data-bind="text:lay.ordersNotif"></span></span>
+								</a>
+								<div class="dropdown-content">
+											<table class="table" style="color:black">
+												<tbody>
+													<!-- ko foreach:lay.orders -->
+													<tr data-bind="click:$root.lay.toOrdersPage">
+														<td><img data-bind="attr:{src:gambar}" style="width: 50px"></td>
+														<td data-bind="text:'ID:'+detail_id"></td>
+													</tr>
+													<!-- /ko -->
+												</tbody>
+											</table>
+									</div>
+									</div>
+							</li>
+							{{#if session.user_type}}
+								{{#ifCond session.user_type '==' 'pembeli'}}
+							<li style="float: left; padding-left: 10px; color: white">
+									<a href="#"><span class="glyphicon glyphicon-transfer fa-2x" ></span></a>
+							</li>
+							{{/ifCond}}
+							{{/if}}
+
+							<li style="float: left; padding-left: 10px">
+								{{>profile-icon}}
+							</li>
+						</ul>
+					</div>
+				{{/ifCond}}
+			{{/if}}
+			{{!-- end toolbar notif --}}
+			{{!-- <div class="toolbox">
+				<div class="row">
+					<div class="col-md-10" >Download | Bantuan | Follow Us 
+						<i class="fa fa-google-plus" aria-hidden="true">
+						</i>&nbsp;<i class="fa fa-facebook" aria-hidden="true"></i> </div>
+					<div class="col-md-2;" style=" margin-right: 30px; padding: 10px">
+						<i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
+					</div>
+				</div>
+				<div class="row">
+					{{#if session.user_type}}
+						{{#ifCond session.user_type '!=' 'admin'}}
+							{{>toolbar-searchbox}}
+							{{>profile-icon}}
+						{{/ifCond}}
+					{{else}}
+							{{>toolbar-searchbox}}
+							{{>profile-icon}}
+					{{/if}}
+				</div>
+			</div> --}}
+		</div>
+	</div> 
+		<div class="container-fluid container" >
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar">xxx</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					
+				<div class="navbar-brand" style="text-align: center">
+					<a href="/" ><span style="background-repeat: round; color: transparent; border-radius: 5px" id="navLogo">asassa;</span>&nbsp;DIRBIS</a>
+				</div>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right" >
+					<li>
+					</li>
+					{{#if session.user_type}}	
+					<li id="searchBoxNav" style="padding: 20px">
+						 <div class="dropdown" style="background-color: #232f3e">
+							<button style="padding-top:0; padding-bottom: 0;" 
+									class="btn dropdown-toggle btn-info" 
+									type="button" 
+									data-toggle="dropdown" >
+								 {{#if session.user_type}}
+									{{#ifCond session.user_type '==' 'penjual'}}
+											Penjual
+											<span class="caret"></span></button>
+											<ul class="dropdown-menu" >
+											<li ><a href="/penjual/product/new">Tambah Produk</a></li>
+											<li><a href="/penjual/products">Daftar Produk</a></li>
+											<li><a href="/penjual/orders">Orders</a></li>
+											<li><a href="/penjual/katalog/new">Tambah Katalog</a></li>
+											<li><a href="/penjual/katalog/list">Daftar Katalog</a></li>
+											<li ><a href="/penjual/profile">Profile</a></li>
+											</ul>
+									{{/ifCond}}
+									{{#ifCond session.user_type '==' 'pembeli'}}
+											Pembeli
+											<span class="caret"></span></button>
+											<ul class="dropdown-menu">
+											<li><a href="/pages/demands/new">Buat Permintaan</a></li>
+											<li><a href="/me/profile">Edit Profile</a></li>
+											<li><a href="/order/myorders">Pemesanan</a></li>
+											<li><a href="/pages/demands/get">Daftar Pengajuan</a></li>
+											<li><a href="#">Kabar Berita Langganan</a></li>
+									{{/ifCond}}
+								{{/if}} 
+							
+						</div>
+					</li>
+					{{/if}}
+					<li><a href="/produk">Produk</a></li>
+					<li><a href="/pages/company">Perusahaan</a></li>
+					 {{#if session.user_type}}
+						{{#ifCond session.user_type '==' 'penjual'}}
+							<li><a href="/penjual/permintaan">Permintaan</a></li>
+							<li><a href="/penjual/timeline">Timeline</a></li>
+						{{/ifCond}}
+						{{#ifCond session.user_type '==' 'pembeli'}}
+							<li><a href="/penawaran">Penawaran</a></li>
+							<li><a href="/timeline">Timeline</a></li>
+							<li><a data-toggle="modal" href='#cart'>
+								<i class="fa fa-shopping-cart" aria-hidden="true"></i> 
+						Cart <span class="badge" id="cart-count" data-bind="text:prod.cartCount">0</span></a></li>
+						{{/ifCond}}
+					{{else}}
+						<li><a data-toggle="modal" href='#cart'>
+							<i class="fa fa-shopping-cart" aria-hidden="true"></i> 
+						Cart <span class="badge" id="cart-count" data-bind="text:prod.cartCount">0</span></a></li>
+					{{/if}}
+					 
+					{{#if session.user}}
+						<li><a href="/logout">Logout</a></li>
+					{{else}}
+						{{#if session.passport}}
+							<li><a href="/logout">Logout</a></li>
+						{{else}}
+							<li><a id="login" href="/login">Login</a></li>
+							<li><a href="/register">Daftar</a></li>
+						{{/if}}	
+					{{/if}}
+					  
+				</ul>
+			</div>
+		</div>
+	</nav>

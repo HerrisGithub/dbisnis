@@ -1,0 +1,121 @@
+<section id="cart" class="modal fade" tabindex="-1" data-width="600" style="top: 5%; font-variant-caps: all-petite-caps; font-weight: bold">
+        <div class="modal-dialog" style="width: 500px; min-height: 200px">
+            <div class="modal-content" style="min-height: 300px">
+                
+                <div class="modal-header" style="background-color: #2b96b6; color: white">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Shopping Cart</h4>
+                </div>
+                <div class="modal-body" style="min-height: 200px">
+                    <div class="row">
+                        <!-- ko if:$root.prod.cart().length<1 -->
+                            <p style="color: red; text-align: center; margin-top: 5%">
+                                <strong>Tidak Ada Pembelanjaan</strong>
+                            </p>
+                        <!-- /ko-->
+                        
+                        <!-- ko if:$root.prod.cart().length>0 -->
+                                <div class="list-group">
+                                    <div style="float: right" >
+                                        <button class="btn btn-danger" data-bind="click:$root.prod.removeAllCartItem"><i class="glyphicon glyphicon-trash"></i></button>
+                                    </div>
+                                    <div style="float: right; padding-right: 10px">
+                                        <button class="btn btn-success" data-bind="click:$root.prod.removeCartItem"><i class="glyphicon glyphicon-trash"></i></button>
+                                    </div>
+                                     <br>
+                                    <!-- ko foreach:$root.prod.cart() -->
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" data-bind="checkedValue:product_by,checked:$root.prod.checkedItem">
+                                            <span data-bind="text:product_by"></span>
+                                        </label>
+                                    </div>
+                                     <!-- ko foreach:item -->
+                                        <div class="list-group-item list-group-item-action
+                                            flex-column align-items-start">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <div class="col-md-3" style="height: 90px">
+                                                     <img data-bind="attr:{src:gambar}" class="img-responsive" style="width: 100%; height: 100%;">
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <div class="row">
+                                                        <h5 class="mb-1" data-bind="text:nama"></h5>
+                                                    </div>
+                                                    <div class="row">
+                                                        <strong>
+                                                            <small class="text-muted">
+                                                                <div class="col-md-8" style="padding-left: 0">
+                                                                    <div class="input-group">
+                                                                        <a class="input-group-addon" data-bind="click:$root.prod.substractQty" href="#">-</a>
+                                                                        <input type="text" class="form-control" 
+                                                                            style="text-align: center; width: 200px" value="0" data-bind="value:count">
+                                                                        <a class="input-group-addon" data-bind="click:$root.prod.addQty" href="#">+</a>
+                                                                    </div>
+                                                                </div>
+                                                            </small>
+                                                        </strong>
+                                                    </div>
+                                                    <div class="row">
+                                                         <h5 class="mb-1" data-bind="text:'Rp. '+$data.harga+',-'"></h5>
+                                                    </div>
+                                                </div>
+                                              
+                                                <div class="col-md-2">
+                                                    <h5 style="padding-top: 20px; padding-bottom: 40px; padding-left: 20px; color: red; font-size: 40pt">
+                                                        <a href="#" data-bind="click:$root.prod.removeCartItem"><i class="glyphicon glyphicon-trash"></i></a></h5>
+                                                </div>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <!-- /ko-->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                 <p style="color: #2b96b6" data-bind="text:'Subtotal : Rp. '+$root.prod.subTotalItem(product_by)+' ,-'"></p>
+                                            </div>
+                                        </div>
+                                    <!-- /ko-->
+                                </div>
+                        <!-- /ko-->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                               
+                               <table class="table table-condensed">
+                                   <tbody>
+                                       <tr>
+                                           <td style="float: left">Total Harga Barang</td>
+                                           <td>:</td>
+                                           <td style="float: right" data-bind="text:'Rp. '+$root.prod.totalHargaProduk()"></td>
+                                       </tr>
+                                       {{!-- <tr>
+                                           <td style="float: left">Biaya Kirim</td>
+                                           <td>:</td>
+                                           <td style="float: right" data-bind="text:'Rp. '+$root.prod.totalHargaProduk()"></td>
+                                       </tr> --}}
+                                       <tr>
+                                           <td style="float: left">Grand Total</td>
+                                           <td>:</td>
+                                           <td style="float: right" data-bind="text:'Rp. '+$root.prod.totalHargaProduk()"></td>
+                                       </tr>
+                                   </tbody>
+                               </table>
+                               
+                        </div>e
+                        
+                    </div>
+                    <br>
+                </div>
+
+                <div class="modal-footer" style="background-color: #2b96b6; color: white">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bind="click:prod.checkout">Checkout</button>
+                </div>
+
+            </div>
+        </div>
+</section>

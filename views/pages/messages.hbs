@@ -1,0 +1,92 @@
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "RobotoDraft", "Roboto", sans-serif}
+.w3-bar-block .w3-bar-item {padding: 16px}
+</style>
+<p data-hs='{"id":"{{data.id}}","subject":"{{data.subject}}","creator":"{{data.creator}}",
+"message_body":"{{data.message_body}}","created_at":"{{data.created_at}}"}' 
+id="data" data-bind="event:{load:ms.loadMessages()}"></p>
+
+<div class="col-md-2">
+<!-- Side Navigation -->
+ <a href="javascript:void(0)" class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align" 
+  onclick="document.getElementById('id01').style.display='block'">New Message <i class="w3-padding fa fa-pencil"></i></a>
+
+<!-- Modal that pops up when you click on "New Message" -->
+<div id="id01" class="w3-modal" style="z-index:4">
+  <div class="w3-modal-content w3-animate-zoom">
+    <div class="w3-container w3-padding w3-red">
+       <span onclick="document.getElementById('id01').style.display='none'"
+       class="w3-button w3-red w3-right w3-xxlarge"><i class="fa fa-remove"></i></span>
+      <h2>Send Mail</h2>
+    </div>
+    <div class="w3-panel">
+      <label>To</label>
+      <input class="w3-input w3-border w3-margin-bottom" type="text">
+      <label>From</label>
+      <input class="w3-input w3-border w3-margin-bottom" type="text">
+      <label>Subject</label>
+      <input class="w3-input w3-border w3-margin-bottom" type="text">
+      <input class="w3-input w3-border w3-margin-bottom" 
+      style="height:150px" placeholder="What's on your mind?">
+      <div class="w3-section">
+        <a class="w3-button w3-red" onclick="document.getElementById('id01').style.display='none'">Cancel  <i class="fa fa-remove"></i></a>
+        <a class="w3-button w3-light-grey w3-right" onclick="document.getElementById('id01').style.display='none'">Send  <i class="fa fa-paper-plane"></i></a> 
+      </div>    
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="col-md-8">
+<!-- Page content -->
+<div class="w3-main" id="emailContent">
+  
+
+    <div  class="w3-container w3-card person w3-white">
+        <br>
+        <img class="w3-round  w3-animate-top" data-bind="attr:{src:ms.creatorImage}" style="width:100px;height: 100px; border-radius: 200px">
+        <br>
+        <h5 class="w3-opacity">Subject: {{data.subject}}</h5>
+        <h4><i class="fa fa-clock-o"></i> From : {{data.creator}}</span>, {{#format_date2 data.created_at}}{{/format_date2}}.</h4>
+        
+        <hr>
+        <p style="word-break: break-all;word-wrap: break-word; padding: 10px">{{data.message_body}}</p>
+          <hr>
+          <p>--- original messages ---</p>
+          <hr>
+          <hr>
+    </div>
+    
+      <!-- ko foreach:ms.reply_messages -->
+    <div  class="w3-container w3-card person w3-white">
+        <br>
+        <img class="w3-round  w3-animate-top" data-bind="attr:{src:$root.ms.getProfile(creator).photo}" style="width:100px; height: 100px; border-radius: 200px">
+        <br>
+        <h4><i class="fa fa-clock-o"></i> From : <span data-bind="text:$root.ms.getProfile(creator).username"></span></h4>
+        {{!-- <a class="w3-button w3-light-grey" href="#" data-bind="click:ms.reply">Reply<i class="w3-margin-left fa fa-mail-reply"></i></a> --}}
+        <hr>
+        <p style="word-break: break-all;word-wrap: break-word; padding: 10px" data-bind="text:message_body"></p>
+        <hr>
+        <hr>
+    </div>
+    <!-- /ko -->
+    <div  class="w3-container person w3-white">
+    <a class="w3-button w3-light-grey" href="#" data-bind="click:ms.reply">Reply<i class="w3-margin-left fa fa-mail-reply"></i></a>
+        <br>
+        <br>
+    </div>
+    
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+

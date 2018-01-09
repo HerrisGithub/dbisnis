@@ -1,0 +1,132 @@
+<style>
+      .chat
+    {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .chat li
+    {
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px dotted #B3A9A9;
+        min-height: 10px
+    }
+
+    .chat li.left .chat-body
+    {
+        margin-left: 60px;
+    }
+
+    .chat li.right .chat-body
+    {
+        margin-right: 60px;
+    }
+
+
+    .chat li .chat-body p
+    {
+        margin: 0;
+        color: #777777;
+    }
+
+    .panel .slidedown .glyphicon, .chat .glyphicon
+    {
+        margin-right: 5px;
+    }
+
+    .panel-body
+    {
+        overflow-y: scroll;
+        height: 350px;
+    }
+
+    ::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar
+    {
+        width: 12px;
+        background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar-thumb
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #555;
+    }
+
+</style>
+<br>
+<input type="text" value="{{room_id}}" id="room_id" hidden>
+{{>dashboard_pembeli}}
+<div class="container" data-bind="attr:{load:chat.loadChattingPage()}">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="panel panel-primary">
+                <div class="panel-heading" id="accordion">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                </div>
+                <div class="panel-body">
+                    <ul class="chat" id="chatContent">
+                    </ul>
+                </div>
+                <div class="panel-footer">
+
+                 <div class="row"> 
+                  <div class="col-md-6">
+                      <div class="col-md-3">
+                          <img data-bind="attr:{src:chat.penawaran().lampiran}" style="width: 90px" alt="">
+                      </div>
+                      <div class="col-md-3">
+                         
+                          <p data-bind="text:p.formatLargeNumber(chat.penawaran().kuantitas)+chat.penawaran().satuan" style="padding-left: 10px"></p>
+                           <p data-bind="text:p.formatLargeNumber(chat.penawaran().harga)" style="padding-left: 10px"></p>
+                      </div>
+                      <div class="col-md-6">
+                        <input type="number" placeholder="Masukan Kuantitas" data-bind="value:chat.qty">
+                          <p></p>
+                          <input type="number" placeholder="Masukan Harga" data-bind="value:chat.harga">
+                      </div>
+                  </div>
+                   <div class="col-md-2"></div>
+                  {{!-- <div class="col-md-4">
+                      <button class="btn btn-success " data-bind="click:chat.lampirkanProduk"><i class="glyphicon glyphicon-shopping-cart"></i></button>
+                        <span class="label label-default" >Lampirkan Produk Lainnya</span>
+                  </div> --}}
+                  </div>
+                  <p></p>
+                    <div class="input-group">
+                        <textarea id="btn-input" type="text" 
+                        class="form-control input-sm" 
+                        data-bind="value:chat.chatContent"
+                        placeholder="Type your message here..." ></textarea>
+                        <span class="input-group-btn  ">
+                            <button class="btn btn-warning btn-sm" 
+                            data-bind="click:chat.sendMess"
+                            id="btn-chat">
+                                Send</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="chatModal">
+   <div class="row">
+        <!-- ko foreach:chat.produk -->
+        <div class="col-xs-3" style="height: 20px; min-height: 20px; max-height: 20px;">
+            <a href="#" data-bind="click:$root.chat.lampirkan" class="thumbnail" style="height: 75px; min-height: 20px; max-height: 75px;">
+                <img data-bind="attr:{src:$data.gambar}" alt="" style="width: 100%; height: 100%">
+                <p></p>
+                <p data-bind="text:$data.nama"></p>
+            </a>
+        </div>
+        <!-- /ko -->
+    </div>
+</div>

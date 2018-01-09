@@ -1,0 +1,224 @@
+<style>
+
+    .w3-container p{
+        color: bisque; font-weight: bold;
+    }
+    .w3-container h4{
+        color: white
+    }
+    .w3-container div{
+        color: white
+    }
+    
+</style>
+<br>
+
+{{> menu}}
+<div class="col-lg-9">
+  <!-- Contact Section -->
+  <div class="w3-container w3-padding-large w3-grey" data-bind="attr:{load:pn.loadPenawaran()}">
+    <h4 id="contact" style="color: white"><b>Buat Penawaran</b></h4>
+           <p><i class="fa fa-minus"></i> Tambahkan terlebih dahulu produk yang akan ditawarkan ke daftar produk</p>
+           <p><i class="fa fa-minus"></i> Penawaran produk hanya untuk produk yang sudah terdaftar, baik yang sudah di publish maupun belum</p>
+        <hr class="w3-opacity">
+      <div class="w3-section row">
+       
+    <!-- #region nama dan kategori--> 
+        <div class="col-md-6">
+             <p>ID Permintaan : <span id="id">{{id_permintaan}}</span></p>
+             <p>Kategori &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span id="kategori">{{kategori}}</span></p>
+             
+             <div role="tabpanel" >
+                    <ul class="nav nav-tabs" role="tablist"style="color: white">
+                        <li role="presentation" class="active" >
+                            <a style="background-color: #2b96b6 !important; 
+                            color: white" 
+                            aria-controls="home" 
+                            role="tab" data-toggle="tab">Nama Produk</a>
+                        </li>
+                       
+                    </ul>
+                
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" 
+                        class="tab-pane active">
+                            <p></p>
+                           <select class="form-control" 
+                           data-bind="options:pn.produk,optionsText:'nama',
+                           optionsValue:'id',value:pn.namaProduk">
+                           </select>
+                           
+                        </div>
+                    </div>
+                </div>
+           
+        </div>
+
+        <div class="col-md-6">
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+             <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist"style="color: white">
+                        <li role="presentation" class="active" >
+                            <a  style="background-color: #2b96b6 !important; 
+                            color: white" 
+                            aria-controls="home" 
+                            role="tab" data-toggle="tab">Kategori Produk</a>
+                        </li>
+                    </ul>
+                
+                    <!-- Tab panes -->
+                    <div class="tab-content" >
+                        <div role="tabpanel" 
+                        class="tab-pane active" >
+                            <p></p>
+                            
+                            <input type="text" class="form-control"
+                                data-bind="value:pn.kategori"
+                             readonly>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            
+        </div>
+        </div>
+    <!-- #endregion -->
+    <!-- #region kuantitas-->
+      <div class="w3-section row">
+          <div class="col-md-6">
+                <div role="tabpanel" >
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist"style="color: white">
+                        <li role="presentation" class="active" >
+                            <a style="background-color: #2b96b6 !important; 
+                            color: white" 
+                            aria-controls="home" 
+                            role="tab" data-toggle="tab">Kuantitas</a>
+                        </li>
+                       
+                    </ul>
+                
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" 
+                        class="tab-pane active" 
+                        >
+                        <p></p>
+                            <input type="number" 
+                            data-bind="value:pn.kuantitas"
+                            class="form-control"
+                            placeholder="Kuantitas"
+                            required="required">
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div role="tabpanel" >
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist"style="color: white">
+                        <li role="presentation" class="active" >
+                            <a style="background-color: #2b96b6 !important; 
+                            color: white" 
+                            aria-controls="home" 
+                            role="tab" data-toggle="tab">Satuan</a>
+                        </li>
+                       
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" 
+                        class="tab-pane active" 
+                        >
+                       <p></p>
+                            <select class="form-control" 
+                            data-bind="options:p.satuanOptions, 
+                            optionsText:'nama',optionsValue:'nama',
+                            value:pn.satuan">
+                            </select>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+      <!-- #endregion -->
+    <!-- #region harga dan lampiran-->    
+        <div class="w3-section row">
+            <div class="col-md-6">
+                <div role="tabpanel" >
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist"style="color: white">
+                        <li role="presentation" class="active" >
+                            <a  href="#net" style="background-color: #2b96b6 !important; 
+                            color: white" 
+                            aria-controls="home" 
+                            role="tab" data-toggle="tab">Harga Net</a>
+                        </li>
+                    </ul>
+                
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" 
+                        class="tab-pane active" 
+                        id="net">
+                        <p></p>
+                        
+                        <div class="input-group" >
+                            <div class="input-group-addon"
+                            style="color: black">Rp.</div>
+                            <input type="number" class="form-control" 
+                            placeholder="Harga Penawaran"
+                            data-bind="value:pn.harga">
+                        </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+        </div>
+    <!-- #endregion -->
+        
+
+
+    <div class="w3-section">
+        <div role="tabpanel" >
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist"style="color: white">
+                        <li role="presentation" class="active" >
+                            <a  href="#default" style="background-color: #2b96b6 !important; 
+                            color: white" 
+                            aria-controls="home" 
+                            role="tab" data-toggle="tab">Pesan</a>
+                        </li>
+                    
+                    </ul>
+                
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" 
+                        class="tab-pane active" 
+                        >
+                        <p></p>
+                            <textarea class="form-control" rows="3" 
+            data-bind="value:pn.pesan" placeholder="Pesan Untuk Pembeli"></textarea>
+                        </div>
+                    
+                    </div>
+        </div>
+            
+        </div>
+
+        <button type="submit" 
+            class="w3-button w3-black w3-margin-bottom"
+             data-bind="click:pn.buatPenawaran">
+            <i class="fa fa-paper-plane w3-margin-right"></i>Kirim Penawaran</button>
+    </div>
+
+</div>

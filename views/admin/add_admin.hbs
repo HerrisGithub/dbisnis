@@ -1,0 +1,44 @@
+<br>
+{{>dashboard_admin}}
+<div class="col-lg-9" style="padding-left: 40px" data-bind="attr:{load:adm.loadAdmin()}">
+<div class="panel panel-default">
+      <div class="panel-heading">
+            <h3 class="panel-title">Pengaturan Admin</h3>
+      </div>
+      <div class="panel-body">
+          <input type="text" placeholder="username">
+          <p></p>
+          <div class="table-responsive">
+              <table class="table table-hover table-bordered">
+                  <thead>
+                      <tr>
+                          <th>Nama</th>
+                          <th>Username</th>
+                          <th>Email</th>
+                           <th>Konfirmasi Token</th>
+                            <th>Konfirmasi</th>
+                            <th><i class="fa fa-gear fa-2x"></i></th>
+                            
+                      </tr>
+                  </thead>
+                  <tbody id="table">
+                      <!-- ko foreach:adm.users -->
+                      <tr>
+                        <td data-bind="text:fullname"></td>
+                        <td data-bind="text:username"></td>
+                        <td data-bind="text:email"></td>
+                        <td data-bind="text:confirm_token"></td>
+                        <td data-bind="text:confirmation"></td>
+                        <td><button data-bind="click:$root.adm.confirm" class="btn btn-info btn-sm">Confirm</button>
+                        <button class="btn btn-danger btn-sm" data-bind="click:$root.adm.decline">Decline</button>
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                        </td>
+                      </tr>
+                      <!-- /ko -->
+                  </tbody>
+              </table>
+          </div>
+          
+      </div>
+</div>
+</div>

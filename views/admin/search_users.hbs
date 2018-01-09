@@ -1,0 +1,49 @@
+
+<header> 
+    <form action="#"> 
+        <input placeholder="Search…" type="search" name="q" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"> 
+    </form> 
+</header> 
+<div class="content"> 
+    <ul data-bind="template: {name:'beer', foreach:beers}"> 
+    </ul> 
+</div> 
+
+<script type="text/html" id="beer"> 
+    <li>
+        <strong data-bind="text: name"></strong> –
+        <span data-bind="text: brewery"></span> –
+        <span data-bind="text: style"></span>
+    </li>
+</script> 
+<script>
+   $(function() {
+    var beers = [
+        {
+        name: "Dragon's Milk",
+        brewery: "New Holland Brewing Company",
+        style: "Imperial Stout"},
+    {
+        name: "Oberon",
+        brewery: "Bell's",
+        style: "Wheat"},
+    {
+        name: "El Molé Ocho",
+        brewery: "New Holland Brewing Company",
+        style: "Mole Ale"}
+        ];
+
+    var viewModel = {
+        query: ko.observable('')
+    };
+
+    viewModel.beers = ko.dependentObservable(function() {
+        var search = this.query().toLowerCase();
+        return ko.utils.arrayFilter(beers, function(beer) {
+            return beer.name.toLowerCase().indexOf(search) >= 0;
+        });
+    }, viewModel);
+
+    ko.applyBindings(viewModel);
+    });
+</script>

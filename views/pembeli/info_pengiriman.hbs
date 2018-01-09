@@ -1,0 +1,292 @@
+{{!-- <style>#content{
+     background-color: white}
+</style> --}}
+<div class="container" style="font-style: normal; 
+font-weight: bold ;
+font-variant-caps: all-petite-caps;" data-bind="visible:user.halamanPengiriman">
+    <p></p>
+    <div class="row" style="background-color: white">
+                <div class="col-md-3" style="padding-left: 0; color: black">
+                    <div style="width: 200px;  padding: 15px;  float: left; font-size: 14pt">
+                            <strong>PENGIRIMAN</strong></div>
+                </div>
+                   
+        </div>
+    <div class="row">
+        <div class="col-md-8" style="padding-bottom: 50px; padding-left: 0; padding-top: 10px">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                    <div class="panel-body" style="padding-left: 10px">
+                        <p><strong>Pilih Alamat Pengiriman</strong></p>
+                    </div>
+                    <!-- Table -->
+                    <table class="table">
+                        <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="#" data-bind="click:user.setAlamatDefault, visible:user.alamat">Alamat Default</a>
+                                        <div class="panel panel-success" data-bind="visible:user.alamatDefault">
+                                            <div class="panel-body">
+                                                
+                                                <table class="table table-hover">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Atas nama</td>
+                                                            <td>:</td>
+                                                            <td data-bind="text:user.nama"></td>
+                                                        </tr>
+                                                         <tr>
+                                                            <td>Provinsi</td>
+                                                            <td>:</td>
+                                                            <td data-bind="text:user.province">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Kabupaten/Kota</td>
+                                                            <td>:</td>
+                                                            <td data-bind="text:user.district">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Kode pos</td>
+                                                            <td>:</td>
+                                                            <td data-bind="text:user.postal_code"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>alamat</td>
+                                                            <td>:</td>
+                                                            <td data-bind="text:user.address">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Nomor Handphone</td>
+                                                            <td>:</td>
+                                                            <td data-bind="text:user.phone">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Atas Nama (Rekening)</td>
+                                                            <td>:</td>
+                                                            <td data-bind="text:user.namaPemilik">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Nomor Rekening</td>
+                                                            <td>:</td>
+                                                            <td data-bind="text:user.nomorRekening">
+                                                            </td>
+                                                        </tr>
+                                                        
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" data-bind="click:user.tambahAlamat,visible:user.alamatDefault">Tambah alamat lain</a>
+                                    <div class="alamat" data-bind="visible:user.alamat">
+                                        <br>
+                                        <div class="row">
+                                            <label  class="col-sm-2 control-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" required="required">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <label class="col-sm-2 control-label">Nama</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" required="required">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <label  class="col-sm-2 control-label">Alamat</label>
+                                            <div class="col-sm-10">
+                                                <textarea  class="form-control" rows="3" required="required"></textarea>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Provinsi</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" value="" required="required" pattern="" title="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Kota</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" value="" required="required" pattern="" title="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Kecamatan</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" value="" required="required" pattern="" title="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Nomor Handphone</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" value="" required="required" pattern="" title="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" data-bind="click:user.setAlamatPenagihan">Penagihan ke alamat yang berbeda</a>
+                                    <div class="alamat-penagihan" data-bind="visible:user.alamatPenagihan">
+                                        <br>
+                                        <div class="row">
+                                            <label class="col-sm-2 control-label">Nama</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" required="required">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <label  class="col-sm-2 control-label">Alamat</label>
+                                            <div class="col-sm-10">
+                                                <textarea  class="form-control" rows="3" required="required"></textarea>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Provinsi</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" value="" required="required" pattern="" title="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Kota</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" value="" required="required" pattern="" title="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Kecamatan</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" value="" required="required" pattern="" title="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Nomor Handphone</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" value="" required="required" pattern="" title="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <div class="panel-body" style="padding-left: 10px">
+                    <button class="btn btn-info" data-bind="click:user.buatPemesanan">BUAT PESANAN</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4" style="padding-bottom: 50px; padding-left: 0; padding-top: 10px; padding-right: 0">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                    <div class="panel-body">
+                        <p> <strong>Rincian Pemesanan <span data-bind="text:user.orderId"></span></strong></p>
+                    </div>
+                    
+
+                    
+                    <table class="table table-bordered table-hover">
+                        <thead style="background-color: #f3f3f3">
+                                <th>Produk</th>
+                                <th style="text-align: right">Kuantitas</th>
+                                <th style="text-align: right">Harga</th>
+                                <th style="text-align: right">Diskon</th>
+                                <th style="text-align: right">Total</th>
+                        </thead>
+                        <tbody>
+                             <!-- ko foreach:user.cart -->
+                                <!-- ko foreach:item-->
+                             <tr>
+                               <td data-bind="text:nama"></td>
+                                <td style="text-align: right" data-bind="text:count+'  X'"></td>
+                                <td >
+                                    <span>Rp. </span> <span style ="float: right" 
+                                    data-bind="text:$root.user.formatLargeNumber(harga)"></span>
+                                </td>  
+                                <td >
+                                    <span >Rp. </span> <span style ="float: right; color: red" 
+                                    data-bind="text:'('+$root.user.formatLargeNumber(diskon)+')'"></span>
+                                </td>  
+                                 
+                                <td >
+                                    <span>Rp. </span> <span style ="float: right" 
+                                    data-bind="text:$root.user.formatLargeNumber(harga*count-diskon)"></span>
+                                </td>
+                            </tr>
+                                <!-- /ko -->
+                            <!-- /ko-->
+                            
+                        </tbody>
+                        <tbody >
+                                <tr style=""><td>Subtotal</td>
+                                    <td></td>
+                                    <td  colspan="3">
+                                        <span style="text-align: left">Rp. </span>
+                                        <span style="float: right;" 
+                                            data-bind="text:user.formatLargeNumber(user.totalBelanja())">
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span style="color: green">Ongkos Kirim</span></td>
+                                    <td></td>
+                                    <td colspan="3"><span>Rp. </span><span  style="float: right;" 
+                                    data-bind="text:user.formatLargeNumber(user.totalBelanja())"></span></td>
+                                </tr>
+                                <tr style="border-top-style: solid;background-color: greenyellow">
+                                    <td style="font-size: 14pt" colspan="2"><strong>Total</strong></td>
+                                    <td colspan="3" style="color: orangered; font-weight: bold; font-size: 14pt">
+                                    <span>RP. </span> <span style="float: right;" 
+                                    data-bind="text:user.formatLargeNumber(user.totalBelanja())"></span>
+                                    </td>
+                                </tr>
+                        </tbody>
+                        
+                    </table>
+                    
+
+                    
+                  
+            </div>
+        </div>{{!-- end of right sidebar --}}
+    </div>
+</div>
+
+

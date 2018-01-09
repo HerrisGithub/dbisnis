@@ -1,0 +1,297 @@
+{{!-- <div class="col-lg-12" style="padding: 0">
+    <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Users</div>
+        <div class="col-md-12" style="padding-left: 2px;">
+            <div class="tab-content" style="padding-top: 0">
+                <div role="tabpanel" class="tab-pane active" id="akun">
+                    <div class="panel panel-danger" style="height: 50px; padding: 10px">
+                        <div class="panel-content">
+                                Data Anda selalu rahasia dan tidak akan kami beritahukan kepada pihak ketiga.
+                        </div>
+                    </div>
+                    <p></p>
+                    <ul class="list-group">
+                        <li class="list-group-item" style="height:65px">
+                            <div class="col-md-6" style="padding-left: 0">
+                                <h3><strong>Informasi Umum</strong></h3>
+                            </div>
+                            <div class="col-md-6" style="text-align: right">
+                                <a data-toggle="modal" data-bind="click:profs.modalInformasiUmum">
+                                    <i class="glyphicon glyphicon-edit" 
+                                    style="font-size: 35pt"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="list-group-item lst-content-image">
+                            <div class="col-md-2" style="padding-top: 30px; text-align: right" >
+                                Foto profil
+                            </div>
+                            <div class="col-md-2" style="height: 100%">
+                                <!-- ko if:profs.isNullOrWhiteSPace(profs.photo) -->
+                                    <img src="/no-photo.png" alt="" style="height: 100%">
+                                <!-- /ko -->
+                                <!-- ko ifNot:profs.isNullOrWhiteSPace(profs.photo) -->
+                                    <img data-bind="attr:{src:profs.photo}" style="height: 100%">
+                                <!-- /ko -->
+                                
+                            </div>
+                        </li>
+                        {{!-- end photo --}}
+                        <li class="list-group-item lst-content">
+                            <div class="col-md-2" style="text-align: right">Nama Perusahaan</div>
+                            <div class="col-md-3 content" style="height: 100%" 
+                                data-bind="text:profs.company_name">
+                            </div>
+                        </li>
+                        <li class="list-group-item lst-content">
+                            <div class="col-md-2" style="text-align: right">Nama Pengelola</div>
+                            <div class="col-md-3 content" style="height: 100%" 
+                                data-bind="text:profs.nama">
+                            </div>
+                        </li>
+                        
+                        <li class="list-group-item lst-content">
+                            <div class="col-md-2" style="text-align: right">Jenis Kelamin</div>
+                            <!-- ko if:profs.gender -->
+                                <div class="col-md-3 content" style="height: 100%" 
+                                    data-bind="text:'Laki - Laki'">
+                                </div>
+                            <!-- /ko -->
+                            <!-- ko if:!profs.gender() -->
+                                <div class="col-md-3 content" style="height: 100%" 
+                                    data-bind="text:'Perempuan'">
+                                </div>
+                            <!-- /ko -->
+                        </li>
+                    
+                        <li class="list-group-item lst-content">
+                            <div class="col-md-2" style="text-align: right">Nomor Rekening</div>
+                            <div class="col-md-3 content" style="height: 100%" 
+                                data-bind="text:profs.account_number">
+                            </div>
+                        </li>
+                            <li class="list-group-item lst-content">
+                            <div class="col-md-2" style="text-align: right">Atas Nama</div>
+                            <div class="col-md-3 content" style="height: 100%" 
+                                data-bind="text:profs.account_name">
+                            </div>
+                        </li>
+                        </li>
+                            <li class="list-group-item lst-content">
+                            <div class="col-md-2" style="text-align: right">Cabang</div>
+                            <div class="col-md-3 content" style="height: 100%" 
+                                data-bind="text:profs.bank_branch">
+                            </div>
+                        </li>
+                        <li class="list-group-item lst-content-image">
+                            <div class="col-md-2" style="text-align: right">Deskripsi Perusahaan</div>
+                            <div class="col-md-7 content">
+                                <textarea rows="3" cols="100" required="required" 
+                                    style="text-align: justify;resize: none" 
+                                    data-bind="value:profs.company_desc" readonly>
+                                </textarea>
+                            </div>
+                        </li>
+
+
+                        <li class="list-group-item" style="height:65px">
+                            <div class="col-md-6" style="padding-left: 0">
+                                <h3><strong>Email dan Telepon</strong></h3>
+                            </div>
+                            <div class="col-md-6" style="text-align: right">
+                                <a href="#email-telepon-seller" data-toggle="modal">
+                                    <i class="glyphicon glyphicon-edit" 
+                                    style="font-size: 35pt"></i>
+                                </a>
+                            </div>
+                        </li>
+                        {{!-- email dan telepon --}}
+                        <li class="list-group-item lst-content">
+                            <div class="col-md-2" style=" text-align: right" >Email</div>
+                            <div class="col-md-3 content" style="height: 100%" 
+                                data-bind="text:profs.email"></div>
+                        </li>
+                        
+                        <li class="list-group-item lst-content">
+                            <div class="col-md-2" style="text-align: right">Telepon</div>
+                            <div class="col-md-3 content" style="height: 100%" 
+                                data-bind="text:profs.phone"></div>
+                        </li>
+                        <li class="list-group-item" style="height:65px">
+                            <div class="col-md-6" style="padding-left: 0">
+                                <h3><strong>Alamat Perusahaan</strong></h3>
+                            </div>
+                            <div class="col-md-6" style="text-align: right">
+                                <a href="#address-seller" data-toggle="modal">
+                                    <i class="glyphicon glyphicon-edit" 
+                                    style="font-size: 35pt"></i></a>
+                            </div>
+                            
+                        </li>
+                        {{!-- email dan telepon --}}
+                        
+                        <li class="list-group-item lst-content">
+                            <div class="col-md-2" style="text-align: right">Provinsi</div>
+                            <div class="col-md-3 content" style="height: 100%" 
+                                data-bind="text:profs.province"></div>
+                        </li>
+                        <li class="list-group-item lst-content" >
+                            <div class="col-md-2" style="text-align: right">Kota/Kabupaten</div>
+                            <div class="col-md-3 content" style="height: 100%" 
+                                data-bind="text:profs.district"></div>
+                        </li>
+                        <li class="list-group-item lst-content">
+                            <div class="col-md-2" style="text-align: right">Kecamatan</div>
+                            <div class="col-md-3 content" style="height: 100%" 
+                                data-bind="text:profs.subDistrict"></div>
+                        </li>
+                        <li class="list-group-item lst-content" >
+                            <div class="col-md-2" style="text-align: right">Alamat</div>
+                            <div class="col-md-3 content" style="height: 100%" 
+                                data-bind="text:profs.address"></div>
+                        </li>
+                        <li class="list-group-item lst-content">
+                            <div class="col-md-2" style="text-align: right">Kode Pos</div>
+                            <div class="col-md-3 content" style="height: 100%" 
+                                data-bind="text:profs.postal_code"></div>
+                        </li>
+                        {{!-- password --}}
+                        <li class="list-group-item" style="height:65px">
+                            <div class="col-md-6" style="padding-left: 0">
+                                <h3><strong>Password</strong></h3>
+                            </div>
+                            <div class="col-md-6" style="text-align: right">
+                                <a href="#pass-seller" data-toggle="modal">
+                                    <i class="glyphicon glyphicon-edit"
+                                     style="font-size: 35pt"></i>
+                                </a>
+                            </div>
+                            
+                        </li>
+                        <li class="list-group-item" style="padding-left: 20px; height: 50px">
+                            <div class="col-md-2" style=" text-align: right" >Password</div>
+                            <div class="col-md-3 content" style="height: 100%" data-bind="text:'...'"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+
+
+<div class="modal fade" id="address-seller" style="padding-top: 0">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Address</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3" style="padding-left: 0">
+                       Provinsi
+                    </div>
+                    <div class="col-md-9">
+                       <select class="form-control" 
+                       data-bind="
+                        options:profs.provinsi,
+                        optionsText: 'provinsi',
+                        optionsValue: 'id',
+                        value:profs.provinceId,
+                        event:{change:profs.changeProvince}">
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-3" style="padding-left: 0">
+                       Kota/Kabupaten
+                    </div>
+                    <div class="col-md-9">
+                          <select class="form-control" 
+                       data-bind="
+                        options:profs.kabupaten,
+                        optionsText: 'district',
+                        optionsValue: 'id',
+                        value:profs.kabupatenId,
+                        event:{change:profs.changeDistrict}">
+                        </select>
+                        {{!-- <input type="text" class="form-control" data-bind="value:profs.phone"> --}}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-3" style="padding-left: 0">
+                       Kecamatan
+                    </div>
+                    <div class="col-md-9">
+                        <select class="form-control" 
+                       data-bind="
+                        options:profs.kecamatan,
+                        optionsText: 'sub_district',
+                        optionsValue: 'id',
+                         value:profs.kecamatanId,
+                         event:{change:profs.changeSubDistrict}
+                        ">
+                        </select>
+                    </div>
+                </div>
+                 <br>
+                <div class="row">
+                    <div class="col-md-3" style="padding-left: 0">
+                       Alamat
+                    </div>
+                    <div class="col-md-9">
+                        
+                        <div class="form-group">
+                                <textarea class="form-control" rows="3" required="required"
+                                draggable="false" style="resize: none" 
+                                placeholder="Masukan alamat tempat tinggal"
+                                data-bind="value:profs.address"></textarea>
+                        </div>
+                        
+                    </div>
+                </div>
+                 <br>
+                <div class="row">
+                    <div class="col-md-3" style="padding-left: 0">
+                       Kode Pos
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" 
+                        class="form-control" data-bind="value:profs.postal_code">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" 
+                data-bind="click:profs.saveInformasiUmum">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-3" style="padding-left: 0">
+       Email
+    </div>
+    <div class="col-md-9">
+        <input type="text" class="form-control" data-bind="value:profs.email">
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-3" style="padding-left: 0">
+       Telepon
+    </div>
+    <div class="col-md-9">
+        <input type="text" class="form-control" 
+        data-bind="value:profs.phone">
+    </div>
+</div>

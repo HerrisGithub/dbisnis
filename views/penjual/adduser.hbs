@@ -1,0 +1,117 @@
+{{>menu}}
+
+
+<div class="col-md-9" >
+    <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-user fa-fw"></i> Add User
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        {{!-- <i class="fa fa-comment fa-fw"></i> New Comment
+                        <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                        </span> --}}
+                        
+                            <div class="form-group row">
+                            <label class="col-sm-2 control-label">Username</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="br" id="input${1/(\w+)/\u\1/g}" class="form-control" value="" required="required" pattern="" title="">
+                            </div>
+                            </div>
+                        
+                    
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" required="required">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">Nama</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" required="required">
+                            </div>
+                        </div>
+                        
+                         <div class="form-group row">
+                            <label class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" required="required">
+                            </div>
+                        </div>
+
+
+                         <div class="form-group row">
+                            <label class="col-sm-2 control-label">Gender</label>
+                           <label class="col-sm-2 control-label">
+                                    <input type="radio" name="gender">
+                                    Male
+                                </label>
+                                 <label class="col-sm-2 control-label">
+                                    <input type="radio" name="gender">
+                                    Female
+                                </label>
+                        </div>
+
+                         <div class="form-group row">
+                            <label class="col-sm-2 control-label">Provinsi</label>
+                            <div class="col-sm-10">
+                                       <select name="" id="input${1/(\w+)/\u\1/g}" class="form-control" required="required">
+                                           <option value=""></option>
+                                       </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">Kabupaten</label>
+                            <div class="col-sm-10">
+                                       <select name="" id="input${1/(\w+)/\u\1/g}" class="form-control" required="required">
+                                           <option value=""></option>
+                                       </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">Kode Pos</label>
+                            <div class="col-sm-10">
+                                       <select name="" id="input${1/(\w+)/\u\1/g}" class="form-control" required="required">
+                                           <option value=""></option>
+                                       </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">Kecamatan</label>
+                            <div class="col-sm-10">
+                                       <select name="" id="input${1/(\w+)/\u\1/g}" class="form-control" required="required">
+                                           <option value=""></option>
+                                       </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">Alamat</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">Telepon</label>
+                            <div class="col-sm-10">
+                                
+                                <input type="text" name="" id="input${1/(\w+)/\u\1/g}" class="form-control" value="" required="required" pattern="" title="">
+                                
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                    
+                </div>
+                <!-- /.list-group -->
+                <a href="#" class="btn btn-default btn-block">OK</a>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+</div>

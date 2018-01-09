@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="/stylesheets/chats.css">
+<aside id="sidebar_secondary" class="tabbed_sidebar ng-scope chat_sidebar">
+
+        {{!-- head --}}
+        <div class="popup-head">
+    			<div class="popup-head-left pull-left">
+                    <img class="md-user-image" data-bind="attr:{src:t.receiver().photo}" 
+                    style="height: 40px; width: 40px">
+                    <h1 data-bind="text:t.receiver().name"></h1>
+                </div>
+                <div class="popup-head-right pull-right">
+                    <div class="btn-group gurdeepoushan">
+                                    <button class="chat-header-button" data-toggle="dropdown" type="button" aria-expanded="false">
+                                    <i class="glyphicon glyphicon-paperclip"></i> </button>
+                                    <ul role="menu" class="dropdown-menu pull-right">
+                                    <li><a href="#"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Gallery</a></li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span> Photo</a></li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> Video</a></li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> Audio</a></li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Location</a></li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Contact</a></li>
+                                    </ul>
+                    </div>
+                    
+                    <button data-widget="remove" id="removeClass" class="chat-header-button pull-right" type="button"><i class="glyphicon glyphicon-remove"></i></button>
+                    </div>
+		</div>
+
+        {{!-- end head --}}
+
+
+        <div id="chat" class="chat_box_wrapper chat_box_small chat_box_active" 
+        style="opacity: 1; display: block; 
+        transform: translateX(0px); background:#eee">
+            <div id="chatContent" class="chat_box touchscroll chat_box_colors_a">
+                <!-- templating chat content -->
+            </div>
+        </div>
+              
+
+    <!-- submit box -->   
+        <div class="chat_submit_box" style="background-color: white">
+            <div class="uk-input-group">
+                <div class="gurdeep-chat-box">
+                <span style="vertical-align: sub;" class="uk-input-group-addon">
+                <a href="#"><i class="fa fa-smile-o"></i></a>
+                </span>
+                <input type="text" placeholder="Type a message"class="md-input" data-bind="value:t.chatContent">
+                <span style="vertical-align: sub;" class="uk-input-group-addon">
+                </span>
+                </div>
+            
+            <span class="uk-input-group-addon">
+            <a href="#" data-bind="click:t.send"><i class="glyphicon glyphicon-send" style="color: green"></i></a>
+            </span>
+            </div>
+        </div>
+    <!-- end submit box -->
+                
+        <script>
+
+          $(function(){
+                $("#removeClass").click(function () {
+                    $('#sidebar_secondary').removeClass('popup-box-on');
+                });
+            })
+        </script>

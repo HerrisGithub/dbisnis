@@ -1,0 +1,231 @@
+
+<style>
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+ 
+  .paginationjs .paginationjs-pages li{
+      float:left;border:1px solid #aaa;border-right:none;list-style:none
+    }
+  .paginationjs .paginationjs-pages li>a{
+    min-width:30px;
+    height:28px;
+    line-height:28px;
+    display:block;
+    background:white;
+    font-size:14px;
+    color:grey;
+    font-weight: bold;
+    text-decoration:none;
+    text-align:center
+  }
+  .paginationjs .paginationjs-pages li>a:hover{
+    background:black
+    }
+  .paginationjs .paginationjs-pages li.active{
+    border:none
+  }
+  .paginationjs .paginationjs-pages li.active>a{height:30px;line-height:30px;background:#aaa;color:#fff}
+  .paginationjs .paginationjs-pages li.disabled>a{opacity:.3}
+  .paginationjs .paginationjs-pages li.disabled>a:hover{background:0 0}
+  .paginationjs .paginationjs-pages li:first-child,.paginationjs .paginationjs-pages li:first-child>a{border-radius:3px 0 0 3px}
+  .paginationjs .paginationjs-pages li:last-child{border-right:1px solid #aaa;border-radius:0 3px 3px 0}
+  .paginationjs .paginationjs-pages li:last-child>a{border-radius:0 3px 3px 0}
+    a{line-height:36px\9}
+    .paginationjs.paginationjs-big .paginationjs-go-input>input[type=text]{height:36px\9;line-height:36px\9}
+  #myChart{
+    width: 10px;
+  }
+</style>
+<div id="halamanProduk" style="font-weight: 700" 
+data-bind="event:{load:prod.loadHalamanProduk()}">
+    <br>
+    <div class="col-md-2">
+        <div style="background-color: white; padding: 15px; height: auto; border-radius: 5px">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <p>REFINE BY CATEGORY</p>
+                        <div class="row" style="text-align: left;">
+                            <ul style="display: block; list-style: none; padding-left: 15px; padding-right: 30px">
+                                <!-- ko foreach:prod.category()  -->
+                                    <li class="catLi">
+                                        <a href="#" data-bind="text:name,click:$root.prod.categoryAction"></a></li>
+                                <!-- /ko -->
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <p>BRAND</p>
+                        <input type="search" data-bind="value:prod.currentFilter, valueUpdate : 'afterkeydown', event: { 'keyup': prod.filter }" class="form-control" placeholder="Search">
+                        <!-- ko foreach:prod.produk()  -->
+                            <p data-bind="text:nama"></p>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <p>HARGA</p>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" >
+                    </div>
+                    <div class="col-sm-1" style="padding-top: 10px">-</div>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" >
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="" >
+                                Bayar ditempat
+                            </label>
+                             <label>
+                                <input type="checkbox" value="" >
+                                Dikirim dari Indonesia
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                  <div class="col-sm-12">
+                      <p>PERINGKAT PRODUK</p>
+                  </div>
+                  
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-md-10">
+            <header id="portfolio">
+                <div class="w3-section w3-bottombar w3-padding-16" style="padding-top: 0!important; margin-top: 0!important">
+                    <span class="w3-margin-right" style="float: left">Filter:</span> 
+                    <div class="dropdown w3-white" style="float: left; margin-right: 4px">
+                        <button class="w3-button w3-white dropdown-toggle w3-white" 
+                        type="button" data-toggle="dropdown">Kategori
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <!-- ko foreach:prod.kategoriOptions -->
+                            <li><a href="#" 
+                            data-bind="text:$data,click:$root.prod.filterKategori"></a></li>
+                            <!-- /ko -->
+                        </ul>
+                    </div>
+
+                    
+                        <div class="dropdown w3-white" style="float: left; margin-right: 4px">
+                        <button class="w3-button w3-white dropdown-toggle w3-white" 
+                        type="button" data-toggle="dropdown">Urutkan
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <!-- ko foreach:pc.kategoriSort -->
+                            <li><a href="#" 
+                            data-bind="text:kategori,
+                                click:$root.prod.urutkan"></a></li>
+                            <!-- /ko -->
+                        </ul>
+                    </div>
+                    <button class="w3-button w3-white" id="allNav"
+                    style="float: left margin-right: 4px"
+                        data-bind="click:prod.all">Semua</button>
+                
+                        <div class="w3-button w3-white w3-hide-small" style="float: right; width: 400px">
+                            <input type="text" style=" height: 30px" 
+                            data-bind="value:prod.currentFilter,valueUpdate:'keyup', event:{keyup:prod.searchBox}" 
+                            class="form-control" placeholder="Cari Produk" autocomplete="off">
+                        </div>
+                </div>
+            </header>
+        
+
+        <div class="row col-md-12">
+            <div id="data-container">
+            </div>
+        </div>
+        {{!-- pagination --}}
+        <div class="row col-md-12">
+            <div class="col-md-2 col-md-offset-5">
+                <div id="pagination" style=""></div>
+            </div>
+        </div>
+        {{!-- end pagination --}}
+    </div>
+</div>
+
+<script>
+    var timer;
+    $(document).scroll(function(){
+        if(timer) {
+		window.clearTimeout(timer);
+	}
+
+	timer = window.setTimeout(function() {
+		// actual callback
+		console.log( "Firing!" );
+	}, 100000);
+    })
+
+</script>
+
+
+
+
+{{!-- 
+<div id="ctn"></div>
+<script>
+    var circle = new ProgressBar.Circle('#ctn', {
+     color: '#FCB03C'
+    });
+ 
+    circle.animate(1.0);  // Number from 0.0 to 4.0
+    iziToast.show({
+        theme: 'dark',
+        icon: '/dirbis.png',
+        message: 'Welcome!',
+        position: 'center', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+        progressBarColor: 'rgb(0, 255, 184)',
+        image:'/dirbis.png',
+        timeout:10000,
+        buttons: [
+            ['<button>Ok</button>', function (instance, toast) {
+                alert("Hello world!");
+            }, true], // true to focus
+            ['<button>Close</button>', function (instance, toast) {
+                instance.hide({
+                    transitionOut: 'fadeOutUp',
+                    onClosing: function(instance, toast, closedBy){
+                        console.info('closedBy: ' + closedBy); // The return will be: 'closedBy: buttonName'
+                    }
+                }, toast, 'close', 'buttonName');
+            }]
+        ],
+        onOpening: function(instance, toast){
+            console.info('callback abriu!');
+        },
+        onClosing: function(instance, toast, closedBy){
+            console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+        }
+    });
+
+</script>
+ --}}
+
+
+
+
+

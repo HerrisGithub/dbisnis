@@ -1,0 +1,111 @@
+  <!-- Tab panes pembeli -->        
+            <div class="tab-content">
+            <br>
+            <div role="tabpanel" class="tab-pane" id="pembeli">
+                {{!-- <form action="/pembeli/register" method="POST"> --}}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input class="form-control fc-username"
+                            style="width:100%" 
+                            name="username" 
+                            placeholder="Username"
+                            data-bind="value:reg.username, 
+                            event:{change:reg.cekUsername}">
+                            <strong><p 
+                            class="exception"
+                            id="username" 
+                            data-bind="text:reg.usernameException"></p></strong> 
+                            <p></p>
+                        </div>
+                        <div class="col-md-6"> 
+                            <input class="form-control" 
+                            style="width:100%" name="email" 
+                            placeholder="Email"
+                            data-bind="value:reg.email,
+                             event:{change:reg.cekEmail}">
+                             <strong><p 
+                             class="exception"
+                            data-bind="text:reg.emailException"></p></strong> 
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input class="form-control" 
+                            style="width:100%" type="" 
+                            name="fullname" 
+                            placeholder="Nama Lengkap"
+                            data-bind="value:reg.nama,
+                             event:{change:reg.cekNama}">
+                             <strong><p 
+                             class="exception"
+                            data-bind="text:reg.namaException"></p></strong> 
+                            <p></p>
+                        </div>
+                        <div class="col-md-1">
+                            <input class="form-control" 
+                            style="width:100%" placeholder="+62" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-control" 
+                            style="width:100%"  
+                            name="telepon" placeholder="8123xxxxx"
+                            data-bind="value:reg.phone,
+                            event:{change:reg.cekPhone}
+                            ">    
+                             <strong><p 
+                             class="exception"
+                            data-bind="text:reg.phoneException"></p></strong> 
+                            <p></p>
+                        </div>
+                         <div class="col-md-2" style="text-align: center; padding-top: 10px; ">
+                            <input type="radio" name="gender" value="1" data-bind="checked: reg.gender" >&nbsp;Male&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="gender" value="0" data-bind="checked: reg.gender" > &nbsp;Female
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input class="form-control" 
+                            style="width:100%" type="password" name="password" 
+                            placeholder="Password"
+                            data-bind="value:reg.password,
+                            event:{change:reg.cekPassword}">
+                            <strong>
+                            <p class="exception"
+                            data-bind="text:reg.passwordException"></p></strong> 
+                            <p></p>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" 
+                            style="width:100%" type="password" 
+                            name="cpassword" placeholder="Confirm Password"
+                            data-bind="value:reg.secondpassword,
+                             event:{change:reg.cekConfirmPassword}">
+                            <strong><p class="exception" 
+                            data-bind="text:reg.confirmPasswordException"></p></strong> 
+                            <p></p>
+                        </div>
+                        
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-primary" 
+                            style="width:100%; margin-bottom:20px"
+                            data-bind="click:reg.submit">SUBMIT</button>
+                        </div>
+                    </div>
+                    
+                    <div class="row" style="text-align: center"><p>Or</p></div>
+                    <div class="row" style="text-align: center">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5" style="text-align: center">
+                            <a href="/register_penjual/facebook"><button class="btn btn-primary" style="background-image: url('/facebook_register.jpg'); width: 100%; background-repeat: round; height: 50px"></button></a>
+                        </div>
+                        <div class="col-md-5">
+                            <a href="/register_penjual/facebook"><button class="btn btn-primary" style="background-image: url('/google.png'); width: 100%; background-repeat: round; height: 50px"></button></a>
+                        </div>
+                    </div>
+                {{!-- </form> --}}
+            </div>
+        <!--end tab pembeli-->

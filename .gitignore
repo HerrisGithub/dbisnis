@@ -1,0 +1,12 @@
+/node_modules
+/.vscode
+
+/public/lib/jqwidgets-ver5.1.0/demos
+/public/lib/jqwidgets-ver5.1.0/jqwidgets-react
+/public/lib/jqwidgets-ver5.1.0/mobiledemos
+/public/lib/jqwidgets-ver5.1.0/phpdemos
+/public/lib/jqwidgets-ver5.1.0/jqwidgets-ts
+/public/lib/jqwidgets-ver5.1.0/images
+/public/lib/jqwidgets-ver5.1.0/documentation
+/public/lib/jqwidgets-ver5.1.0/scripts
+/public/lib/jqwidgets-ver5.1.0/EULA.pdf

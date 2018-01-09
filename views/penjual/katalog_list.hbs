@@ -1,0 +1,86 @@
+{{> menu}}
+<div class="col-lg-9" data-bind="event:{load:kl.loadKatalogList()}">
+    
+    {{!-- <div class="col-lg-12 search_bar">
+        <div class="input-group">
+            <input type="text" name="order_filter" id="order_filter" class="form-control input-lg" placeholder="Filter orders">
+            <span class="input-group-btn">
+                <button class="btn btn-success btn-lg" id="btn_order_filter">Filter</button>
+                <a href="/penjual/orders" class="hidden-xs btn btn-warning btn-lg"><i class="fa fa-times" aria-hidden="true"></i></a>
+            </span>
+        </div>
+        <p class="text-warning top-pad-10">Orders can be filtered by: surname, email address or postcode/zipcode</p>
+    </div> --}}
+    
+    <div class="col-lg-12" style="font-variant-caps: all-petite-caps">
+        <ul class="list-group">
+            <li class="list-group-item">
+                    <strong><h3>Katalog</h3></strong>
+            </li>
+            <!-- ko foreach:kl.listKatalog -->
+            <li class="list-group-item" style="background-color: whitesmoke">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" style="font-weight: bold; color: white; 
+                    background-color: #2b96b6;"> 
+                        <span data-bind="text:company_name+' - Katalog id : '+katalogId"></span>
+                            <span style="float: right" >
+                                <a href="#"
+                                    data-bind="click:$root.kl.removeItem">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </span> 
+                            <span style="float: right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+                        <span style="float: right">
+                            <a href="#"
+                                data-bind="attr:{href:file}">
+                               <i class="fa fa-download"></i> 
+                            </a>
+                        </span> 
+                        <span style="float: right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+                          <span style="float: right">
+                            <a href="#"
+                                data-bind="click:$root.kl.setting">
+                               <i class="fa fa-cog"></i> 
+                            </a>
+                        </span> 
+                        
+                    </div>
+                      
+                        <div class="panel-body" >
+                            <p data-bind="text:desc"></p>
+                        </div>
+                
+                        <!-- Table -->
+                        <table class="table" style="font-weight: bold">
+                           
+                            <tbody>
+                                <tr>
+                                    <td>Nama Katalog</td>
+                                    <td>:</td>
+                                    <td> <span data-bind="text:title"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Dibuat </td>
+                                    <td>:</td>
+                                    <td> <span data-bind="text:$root.kl.cdate(created_at)"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Deskripsi </td>
+                                    <td>:</td>
+                                    <td> 
+                                        <textarea class="form-control" 
+                                        data-bind="value:desc" style="resize: none" readonly></textarea>
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                </div>
+                <br>
+            </li>
+            <!-- /ko -->
+        </ul>
+    </div> 
+</div>
+{{>katalog-modal}}

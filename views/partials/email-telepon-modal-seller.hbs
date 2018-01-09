@@ -1,0 +1,52 @@
+
+<div class="w3-container" >
+
+  <div id="contact-seller" class="w3-modal" >
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" 
+    style="max-width:800px; font-variant-caps: all-petite-caps">
+
+        <div class="w3-center">
+            <br>
+            <h4><strong>Email & Telepon</strong></h4>
+             <span onclick="document.getElementById('contact-seller').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+        </div>
+      <div class="w3-container">
+        <div class="row">
+            <div class="w3-section">
+            <div class="col-md-6">
+                <label><b>Email</b></label>
+                <input type="text" 
+                            class="form-control" 
+                            required="required"
+                            data-bind="value:profs.email" tabindex="1">
+            </div>
+                <div class="col-md-6" style="padding-left: 0">
+                <label><b>Nomor Telepon</b></label>
+                    <input type="text" 
+                    class="form-control" 
+                    required="required"
+                    data-bind="value:profs.phone" tabindex="2">
+                </div>
+        <p></p>
+            </div>
+        </div>
+         <div class="row">
+            <div class="w3-section">
+                
+            </div>
+        </div>
+       
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+    
+        <button type="button" class="w3-button w3-green"
+        data-bind="click:profs.saveInformasiUmum">Save changes</button>
+        <button onclick="document.getElementById('contact-seller').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+        <span class="w3-right w3-padding w3-hide-small">
+            
+        </span>
+      </div>
+
+    </div>
+  </div>
+</div>

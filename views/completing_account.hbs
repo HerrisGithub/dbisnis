@@ -1,0 +1,162 @@
+<style>
+	.co
+	lorgraph {
+  height: 5px;
+  border-top: 0;
+  background: #c4e17f;
+  border-radius: 5px;
+  background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+</style>
+<div class="row" data-bind="attr:{load:acc.loadAccount()}">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+			<h2>Please Sign Up <small>It's free and always will be.</small></h2>
+			<hr class="colorgraph">
+			
+			<div class="form-group">
+				<input type="text" 
+				class="form-control input" 
+				data-bind="value:acc.name"
+				placeholder="Name" >
+			</div>
+			<div class="form-group">
+				<input type="text" 
+				data-bind="value:acc.username"
+				class="form-control input" placeholder="Username">
+			</div>
+			<div class="form-group">
+				<input type="email" 
+				data-bind="value:acc.email"
+				class="form-control input" placeholder="Email Address">
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input type="password"
+						data-bind="value:acc.password" 
+						class="form-control input" 
+						placeholder="Password">
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input type="password" 
+						data-bind="value:acc.confirmPassword"
+						class="form-control input" 
+						placeholder="Confirm Password">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input type="date" 
+						data-bind="value:acc.birth"
+						class="form-control input" 
+						placeholder="Birth">
+					</div>
+				</div>
+				<div class="col-xs-10 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input type="number" 
+						data-bind="value:acc.phone"
+						class="form-control input" 
+						placeholder="Phone">
+					</div>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<select class="form-control input"
+						data-bind=" options:acc.provinsi,
+                        optionsText: 'provinsi',
+                        optionsValue: 'id',
+                        value:acc.provinceId,
+                        event:{change:acc.changeProvince}"
+						placeholder="Province"></select>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<select class="form-control input" 
+						data-bind="
+						 options:acc.kabupaten,
+                        optionsText: 'district',
+                        optionsValue: 'id',
+                        value:acc.kabupatenId,
+                        event:{change:acc.changeDistrict},enable:acc.districtToggle"
+						placeholder="District"></select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						 <select class="form-control" 
+                       data-bind="
+                        options:acc.kecamatan,
+                        optionsText: 'sub_district',
+                        optionsValue: 'id',
+                        value:acc.kecamatanId,
+                        event:{change:acc.changeSubDistrict},enable:acc.subDistrictToggle">
+                    </select>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-3 col-md-3">
+					<div class="form-group">
+						<input type="number" 
+						class="form-control input" 
+						 data-bind="value:acc.postal_code,enable:acc.postalCodeToggle"
+						placeholder="Postal Code">
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-3 col-md-3">
+					<div class="form-group">
+						
+						<select class="form-control" 
+						required="required"
+						data-bind="options:acc.genderOptions,
+						optionsText:'gender',
+						optionsValue:'id',
+						value:acc.gender"
+						></select>
+						
+					</div>
+				</div>
+			</div>
+				<div class="form-group">
+					<textarea class="form-control" 
+					rows="3" required="required" 
+					style="resize: none"
+					data-bind="value:acc.address"
+					placeholder="Address"></textarea>
+					
+				</div>
+			<div class="row">
+				<div class="col-xs-4 col-sm-3 col-md-3">
+					<span class="button-checkbox">
+						<button type="button" class="btn">I Agree</button>
+                        <input type="checkbox" class="hidden" value="1">
+					</span>
+				</div>
+				<div class="col-xs-8 col-sm-9 col-md-9">
+					 By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
+				</div>
+			</div>
+			
+			<hr class="colorgraph">
+			<div class="row">
+				<div class="col-xs-12 col-md-12">
+					<input value="Register" 
+						data-bind="click:acc.register"
+						class="btn btn-primary btn-block btn-lg">
+				</div>
+			</div>
+	</div>
+</div>
+

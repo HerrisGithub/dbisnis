@@ -1,0 +1,405 @@
+
+<style>
+    #highlights li{
+        list-style: square;
+        float: left;
+        padding-left: 10px;
+        width: 200px;
+        word-wrap: break-word;
+        margin-left: 20px;
+    }
+    #highlights li:first-child{
+        padding-left: 0;
+        
+    }
+    #highlights li:nth-child(even){
+    }
+
+    #highlights li:nth-child(odd){
+        clear: both;
+        padding-left: 0;
+        margin-left: 0
+    } 
+    
+
+
+
+</style>
+
+<link rel="stylesheet" href="/stylesheets/produk.css">
+<div id="produkPage" style="font-weight: 700" 
+data-bind="event:{load:prod.produkLoad()}">
+    <br>
+    {{!-- sidebar --}}
+        <div class="col-md-2">
+            <div style="background-color: white; padding: 15px; height: auto; border-radius: 5px">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <p>REFINE BY CATEGORY</p>
+                            <div class="row">
+                                <ul style="display: block; list-style: none; padding-left: 20px">
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <p></p>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <p>BRAND</p>
+                            <input type="search" data-bind="value:prod.currentFilter, valueUpdate : 'afterkeydown', 
+                            event: { 'keyup': prod.filter }" class="form-control" placeholder="Search">
+                            <!-- ko foreach:prod.produk()  -->
+                                <p data-bind="text:name"></p>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+                <p></p>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <p>HARGA</p>
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" >
+                        </div>
+                        <div class="col-sm-1" style="padding-top: 10px">-</div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" >
+                        </div>
+                    </div>
+                </div>
+                <p></p>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="" >
+                                    Bayar ditempat
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="" >
+                                    Dikirim dari Indonesia
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                    <div class="col-sm-12">
+                        <p>PERINGKAT PRODUK</p>
+                    </div>
+                    
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    {{!-- end sidebar --}}
+    <div class="col-md-10">
+        <div class="row">
+            {{!-- header --}}
+                <div class="container col-md-11" 
+                    style="background-color: whitesmoke; ">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h3><strong>{{data.data.nama}}</strong></h3>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="round hollow text-center">
+                                    <a href="#" data-bind="click:function(){lay.chatsAnother('{{data.data.product_by}}')}" class="produkChat" 
+                                    data-username="{{data.data.product_by}}" 
+                                    id="{{data.data.id}}"><span class="glyphicon glyphicon-comment"></span> Chat Dengan Penjual</a>
+                                </div>
+                                
+                            </div>
+                            {{!-- end chat button --}}
+                        </div>
+                        <div class="row">
+                            <hr style="border-width: 2px; border-color: #3498db">
+                        </div>
+                    </div>
+                </div>
+            {{!-- end header --}}
+            {{!-- content main --}}
+            <div class="product-layout col-md-11" 
+                style="background-color: whitesmoke; margin-right: 300px; 
+                padding-left: 11px; padding-top: 0px" data-bind="event:{load:prod.loadHalamanProduk()}">
+                
+                
+                {{!-- gambar produk --}}
+                    <div class="col-md-6">
+                        {{#if data.data.gambar}}
+                            <div class="vertical-center title-image-container" style="height: 300px; width: 400px;">
+                                <a id="product-title-image-href" href="javascript:ImageZoom()"  style="width: 100%; height: 100%">
+                                    <img src="{{data.data.gambar}}" id="product-title-image"
+                                    class="product-title-image img-responsive" 
+                                    style="width: 100%; height: 100%">
+                                </a>
+                            </div>  
+                        {{else}}
+                            <div class="vertical-center title-image-container">
+                                <img src="/uploads/placeholder.png" 
+                                id="product-title-image" 
+                                class="product-title-image img-responsive" alt="...">
+                            </div>
+                        {{/if}}
+                        {{#ifCond images.length '>' 1}}
+                            {{#each images}}   
+                                <div class="vertical-center thumbnail-image-container col-xs-6 col-md-3" style="height: 50px; width: 100px; 
+                                background-repeat: round; padding-top: 10px; padding-bottom: 10px">
+                                    <img src="{{this.path}}" class="thumbnail-image img-responsive">
+                                </div>
+                            {{/each}}
+                        {{/ifCond}}
+                    </div>
+                {{!-- end gambar produk --}}
+                <div class="col-md-6">
+                    {{!-- highlights --}}
+                        <div class="row" style="font-variant:small-caps">
+                            <ul id="highlights">
+                                  <!-- ko foreach:prod.products-->
+                                        <!-- ko foreach:fitur_umum -->
+                                            <li data-bind="text:$data.fitur"></li>
+                                        <!-- /ko -->
+                                 <!-- /ko -->
+                            </ul>
+                        </div>
+                    {{!-- end hightlight --}}
+                    <hr style="border-width: 2px; border-color: #3498db">
+                    {{!-- promosi --}}
+                        <div class="row">
+                            <div class="col-md-1 fa fa-gift fa-2x" style="color: #3498db"></div>
+                            <div class="col-md-6 " style="color: #3498db; font-size: 10pt; padding: 10px">PROMO PENJUAL</div>
+                        </div>
+
+                        {{#if diskon}}
+                            <div class="row" style="font-size: 8pt">
+                                <div class="col-md-12">
+                                    <p>Potongan {{persen diskon.persen}} dengan kode <span style="color: yellowgreen" class="kode-promosi">{{uppercase diskon.kode_promosi}}</span></p>
+                                    {{#if diskon.min}}
+                                        <p>Minimal Pembelian  <span style="color: yellowgreen">Rp. {{ format_amount diskon.min}}</span></p>
+                                    {{/if}}
+                                    {{#if diskon.max}}
+                                        <p>Maksimal Potongan  <span style="color: yellowgreen">Rp. {{ format_amount diskon.max_diskon}}</span></p>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <hr style="border-width: 2px; border-color: #3498db">
+                        {{/if}}
+                    {{!-- end promosi --}}
+                    <div class="row" style="color: #3498db">
+                           <div class="form-group">
+                               <label class="col-sm-4 control-label">
+                                   Variasi
+                               </label>
+                               <div class="col-sm-8">
+                                    <select id="variasiSelected" 
+                                        data-bind="options: prod.variasi,
+                                        optionsText: 'nama',
+                                        optionsValue: 'nama', 
+                                        value:prod.variasiSelection, 
+                                        event:{change:prod.changeVariasi()}" 
+                                        class="form-control">
+                                    </select>
+                               </div>
+                           </div>
+                          
+                            {{#if data.grosir}}
+                            <h4><strong>Grosiran</strong></h4>
+                                <table class="table table-bordered table-hover" style="background-color: white; min-width: 480px">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Variasi</th>
+                                        <th>MIN</th>
+                                        <th>MAX</th>
+                                        <th style="text-align: right">Harga Satuan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each data.grosir}}
+                                        <tr>
+                                            <td>{{index @index}}</td>
+                                            <td>{{this.variasi_name}}</td>
+                                            <td>{{this.min}}</td>
+                                            <td>{{this.max}}</td>
+                                            <td><span>RP. </span><span style="float: right">{{format_amount this.satuan}}</span></td>
+                                        </tr>
+                                    {{/each}}
+                                </tbody>
+                                </table>
+                            {{/if}}
+                            <br>
+                            <br>
+                            <div class="col-md-4">Kode Diskon</div>
+                            <div class="col-md-8">
+                            <input type="text" class="form-control" 
+                            style="text-transform: uppercase"
+                            required="required" 
+                            data-bind="value:$root.prod.valueUpdateDiskon,
+                            event:{'change':$root.prod.valueChangeDiskon}">
+                            </div>
+                            <br>
+                             <div data-bind="visible:$root.prod.cekDiskon">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8" style="color: red">Kode Diskon Salah</div>
+                            </div>
+                    </div>
+                        <br>
+                         <div style="font-variant-caps: all-small-caps">
+                              <table class="table table-hover"  >
+                                  <tbody>
+                                      <tr>
+                                          <td>Harga</td>
+                                           <td>:</td>
+                                            <td data-bind="text: prod.unit()+' X Rp. '+prod.formatLargeNumber(prod.harga())"></td>
+                                            <td>Rp. </td>
+                                            <td data-bind="text:prod.formatLargeNumber(prod.bruto())" style="text-align: right"></td>
+                                      </tr>
+                                      <tr data-bind="visible:prod.hasDiskon">
+                                          <td>Diskon</td>
+                                           <td>:</td>
+                                            <td data-bind="text:prod.getPersenDiskon()+'%'"></td>
+                                              <td>Rp. </td>
+                                            <td data-bind="text:'('+prod.formatLargeNumber(prod.diskon())+')'" 
+                                            style="color: red; text-align: right"></td>
+                                      </tr>
+                                      <tr >
+                                          <td>Total</td>
+                                           <td>:</td>
+                                            <td></td>
+                                              <td>Rp. </td>
+                                            <td data-bind="text:prod.formatLargeNumber(prod.total())" 
+                                            style="text-align: right"></td>
+                                      </tr>
+                                      
+                                  </tbody>
+                              </table>
+                         </div>
+
+                    <div class="row">
+                        <br>
+                            <br>
+                        <div class="col-md-4" style="font-variant-caps: all-petite-caps">
+                            <div class="col-md-12">
+                                 <input type="number" class="form-control" 
+                                 required="required" placeholder="Unit" min="1"
+                                 data-bind="value:prod.unit,event:{change:prod.unitChange}">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                        <button class="btn btn-primary btn-block 
+                        product-add-to-cart btnAddCart" 
+                        type="button" id="{{data.data.id}}" 
+                                data-bind="click:prod.addToCartView, 
+                                enable:$root.prod.addToCartEnable">Add to cart</button>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                     
+                </div>
+            </div>
+            {{!-- end content main --}}
+            {{!-- content bottom --}}
+            <div class="row container">
+                {{!-- spesifikasi dan detail --}}
+                <div class="col-md-8" style="padding: 0">
+                    {{!-- detail --}}
+                    <div class="product-layout col-md-12" style="background-color: white; 
+                        margin-top: 10px; white-space: pre-line; font-weight: normal; padding-top: 0">
+                        <p><strong>Detail produk dari {{data.data.nama}}</strong></p>
+                        {{{description}}}
+                    </div>
+                    {{!-- end detail --}}
+                    {{!-- spesifikasi --}}
+                    <div class="product-layout col-md-12" style="background-color: white; margin-top: 10px; white-space: pre-line; font-weight: normal; padding-top: 0">
+                        <p><strong>Spesifikasi produk dari {{data.data.nama}}</strong></p>
+                        <table class="table ">
+                            <tbody>
+                                <tr>
+                                    <td>Berat (kg)</td>
+                                    <td>:</td>
+                                    <td>{{data.data.berat}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Kondisi</td>
+                                        <td>:</td>
+                                        <td>
+                                            {{#ifCond data.data.kondisi '==' 1}}
+                                                Baru
+                                            {{/ifCond}}
+                                            {{#ifCond data.data.kondisi '==' 2}}
+                                             Bekas
+                                             {{/ifCond}}
+                                             {{#ifCond data.data.kondisi '==' 0}}
+                                             Rusak
+                                             {{/ifCond}}
+                                        </td>
+                                </tr>
+                                {{#each data.data.spesifikasi}}
+                                <tr>
+                                    <td>{{this.kategori}}
+                                    </td>
+                                    <td>:</td>
+                                    <td>{{this.spesifikasi}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    {{!-- end spesifikasi --}}
+                </div>
+                {{!-- end spesifikasi dan detail --}}
+            
+
+                {{!-- sidebar kanan --}}
+                <div class="col-md-3" style="
+                background-color: white; 
+                margin-top: 10px; 
+                margin-left: 10px; 
+                width: 260px; 
+                padding: 10px; 
+                height: 400px">
+                asas
+                </div>
+                {{!-- end sidebar kanan --}}
+
+                {{!-- end sponsor template --}}
+                    {{!-- <button type="button" class="btn btn-info" id="btn-chat" 
+            style="position: fixed; bottom: 10px; right: 7%; border-radius: 10px; 
+            background-color: transparent; color:purple" data-bind="click:chat.chatWithSeller" class="startChat" 
+                                data-username="{{data.data.product_by}}" 
+                                id="{{data.data.id}}">
+                <i class="fa fa-comments fa-2x"></i>
+            </button> --}}
+        </div>
+            {{!-- end content bottom --}}
+    </div>
+</div>
+{{>zoomimage}}
+ {{>chatbox-produk}}
+<input type="text" hidden value="{{data.data.id}}" class="idProduk">
+	
+<script>
+    
+  var specificPropertyParameters = anime({
+  targets: '#productPage',
+  rotate: {
+    value: 360,
+    duration: 2000,
+    easing: 'easeInOutSine'
+  },
+  
+  delay: 250 // All properties except 'scale' inherit 250ms delay
+});
+</script>

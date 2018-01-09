@@ -1,0 +1,160 @@
+<input type="number" value="{{id}}" id="orderId" hidden>
+<div class="container" 
+style="font-style: normal; font-family: 'Segoe UI', 
+Tahoma, Geneva, Verdana, sans-serif;font-size: 10pt">
+    <p></p>
+    <div class="row" style="background-color: white">
+                <div class="col-md-2" style="padding-left: 0; color: black">
+                    <div style="background: width: 200px;  padding: 15px; padding-left: 30px; float: left; font-size: 11pt">
+                        <strong>PEMBAYARAN</strong></div>
+                </div>
+        </div>
+    <div class="row">
+    <div class="col-md-8" style="padding-bottom: 50px; padding-left: 0; padding-top: 10px">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+                
+
+                <div class="panel-body" style="padding-left: 10px">
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" 
+                                style="text-align: right">Order ID :</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" 
+                                    data-bind="value:user.orderId, enable:false">
+                                </div>
+                            </div>
+                        </div>
+                         <br>
+                         <div class="row">
+                            <div class="form-group">
+                            <label class="col-sm-3 control-label" 
+                            style="text-align: right">Jumlah Transfer :</label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" data-bind="value:user.nominalTrsf">
+                            </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" style="text-align: right">Rekening Bank :</label>
+                                <div class="col-sm-9">
+                                    Pilih Bank
+                                    <select class="form-control" 
+                                    required="required"
+                                    data-bind="options:user.bank,
+                                    optionsText:'name',
+                                    optionsValue:'name',value:user.bankName">
+                                        <option value=""></option>
+                                    </select>   
+                                    Nomor Rekening
+                                    <input class="form-control" type="number" 
+                                    data-bind="value:user.bankAccount" required="required">
+                                    Nama Sesuai Buku Tabungan
+                                    <input class="form-control"  
+                                    data-bind="value:user.namaPemilik" type="text" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                         <div class="form-group">
+                            <label class="col-sm-3 control-label" style="text-align: right">Upload Bukti Transfer :</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                     <div id="jqxBuktiTransfer"></div> 
+                                </div>
+                                <p></p>    
+                                <input type="text" class="form-control" data-bind="value:user.buktiTrsf">
+                            </div>
+                         </div>
+                        </div>
+                      
+                  
+                </div>
+               
+            <div class="panel-body" style="padding-left: 10px">
+                <button class="btn btn-info" data-bind="click:user.kembaliKePengiriman"><< Kembali</button>
+                <button class="btn btn-success" data-bind="click:user.payment">KONFIRMASI PEMBAYARAN</button>
+
+                 <!-- ko if:user.bayar -->
+                    <button class="btn btn-success" data-bind="enable:false">PROSES VERIFIKASI</button>
+                <!-- /ko -->
+                <button id="cartCount" hidden class="btn" data-bind="click:prod.setCartCountNull">adad</button>
+            </div>
+        </div>
+
+    </div>
+    {{!-- <div class="col-md-4" style="padding-bottom: 50px; padding-left: 0; padding-top: 10px; padding-right: 0">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+                <div class="panel-body">
+                    <p> <strong>Rincian Pemesanan <span data-bind="text:user.orderId"></span></strong></p>
+                </div>
+                <!-- Table -->
+                
+                <table class="table table-bordered table-hover">
+                            <thead style="background-color: #f3f3f3">
+                                    <th>Produk</th>
+                                    <th style="text-align: right">Kuantitas</th>
+                                    <th style="text-align: right">Harga</th>
+                                    <th style="text-align: right">Diskon</th>
+                                    <th style="text-align: right">Total</th>
+                            </thead>
+                            <tbody>
+                                <!-- ko foreach:user.cart -->
+                                    <!-- ko foreach:item-->
+                                <tr>
+                                <td data-bind="text:nama"></td>
+                                    <td style="text-align: right" data-bind="text:count+'  X'"></td>
+                                    <td >
+                                        <span>Rp. </span> <span style ="float: right" 
+                                        data-bind="text:$root.user.formatLargeNumber(harga)"></span>
+                                    </td>  
+                                    <td >
+                                        <span >Rp. </span> <span style ="float: right; color: red" 
+                                        data-bind="text:'('+$root.user.formatLargeNumber(diskon)+')'"></span>
+                                    </td>  
+                                    
+                                    <td >
+                                        <span>Rp. </span> <span style ="float: right" 
+                                        data-bind="text:$root.user.formatLargeNumber(harga*count-diskon)"></span>
+                                    </td>
+                                </tr>
+                                    <!-- /ko -->
+                                <!-- /ko-->
+                                
+                            </tbody>
+                            <tbody >
+                                    <tr style=""><td>Subtotal</td>
+                                        <td></td>
+                                        <td  colspan="3">
+                                            <span style="text-align: left">Rp. </span>
+                                            <span style="float: right;" 
+                                                data-bind="text:user.formatLargeNumber(user.totalBelanja())">
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span style="color: green">Ongkos Kirim</span></td>
+                                        <td></td>
+                                        <td colspan="3"><span>Rp. </span><span  style="float: right;" 
+                                        data-bind="text:user.formatLargeNumber(user.totalBelanja())"></span></td>
+                                    </tr>
+                                    <tr style="border-top-style: solid;background-color: greenyellow">
+                                        <td style="font-size: 14pt" colspan="2"><strong>Total</strong></td>
+                                        <td colspan="3" style="color: orangered; font-weight: bold; font-size: 14pt">
+                                        <span>RP. </span> <span style="float: right;" 
+                                        data-bind="text:user.formatLargeNumber(user.totalBelanja())"></span>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                            
+                        </table>
+        </div>
+    </div> --}}
+    {{!-- end of right sidebar --}}
+    </div>
+</div>

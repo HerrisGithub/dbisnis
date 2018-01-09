@@ -1,0 +1,38 @@
+
+<div class="" style="font-weight: 700" data-bind="event:{load:nav.loadUkm()}">
+<div class="col-md-2"></div>
+    <div class="col-md-9">
+    <br>
+    <div class="row" style="font-variant-caps: all-petite-caps">
+       <div class="col-xs-1 col-sm-1 col-md-1 col-lg-3" style="width: 100%">
+          <!-- ko foreach:nav.UKM -->
+            <div class="thumbnail" style="width:100%">
+               <div style="padding:10px; z-index: -1 ">
+                    <div class="col-md-2">
+                        <img style="height: 100px; 
+                        width: 100px" 
+                        data-bind="attr:{src:photo}" >    
+                    </div>
+                    <div class="col-md-9">
+                        <strong><h3 style="padding: 10px;padding-bottom: 0;" 
+               data-bind="text:company_name"></h3></strong>
+                    </div>
+                    
+               </div>
+               <br>
+               
+            </div>
+            <!-- /ko -->
+       </div>
+    
+</div>
+
+
+
+
+
+
+
+
+
+

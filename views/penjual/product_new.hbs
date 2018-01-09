@@ -1,0 +1,439 @@
+<style>
+    .required{
+        color: red
+    }
+</style>
+
+<link rel="stylesheet" href="/jqwidgets/styles/jqx.base.css" type="text/css" />
+<link rel="stylesheet" href="/jqwidgets/styles/jqx.darkblue.css" type="text/css" />  
+<style>
+        .active-pre-order{
+            background-color: red
+        }
+        .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    }
+
+    .switch input {display:none;}
+
+    .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    }
+
+    .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    }
+
+    input:checked + .slider {
+    background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+    border-radius: 34px;
+    }
+
+    .slider.round:before {
+    border-radius: 50%;
+    }
+</style>
+<br>
+{{> menu}}
+
+<div class="form-horizontal" id="insert_form" data-toggle="validator">
+    <div class="col-lg-9" style="padding: 0; 
+    margin: 0; background-color: white; padding: 0; width: 83%">
+    <div class="col-lg-12" style="padding: 0">
+    </div>
+    <div class="col-lg-12" style="padding: 0">
+          <div class="panel panel-default">
+             <div class="panel-heading">
+                  <div class="pull-right"><button class="btn btn-success btn-sm" onclick="javascript:window.location.href='/penjual/products'">Selesai</button></div>
+                  <p><strong>Tambah Gambar</strong></p>
+              </div>
+              <div class="panel-body">
+                <div class="col-lg-12" style="padding-left: 0">
+                     <div id="jqxFileUpload"></div> 
+                </div>
+                <br>
+                <br>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Gambar</th>
+                             <th>Aksi</th>
+                        </tr>
+
+                    </thead>
+                    <tbody data-bind="foreach:addProd.gambar">
+                        <tr>
+                            <td data-bind="text:nama"></td>
+                            <td style="text-align: center"> 
+                                <img data-bind="attr:{src:gambar}" 
+                                style="width: 100px; height: 50px; background-repeat: round">
+                            </td>
+                            <td>
+                                <a href='#' data-bind='click: $root.addProd.removeGambar'>
+                                    <button class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-minus-sign"></span>
+                                    <span>Hapus Gambar</span></button>
+                                   
+                                </a>
+                                &nbsp;
+                                <a href='#' data-bind='click: $root.addProd.setAsMain'>
+                                    <button class="btn btn-success btn-sm">
+                                         <span class="glyphicon glyphicon-flag"></span>
+                                    <span>Gambar Utama</span>
+                                    </button>
+                                   
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+              <div class="panel-heading">
+                  <p><strong>Informasi Produk</strong></p>
+              </div>
+                  <div class="panel-body">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Nama Produk 
+                                    <span class="required">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="nama"
+                                     data-bind="value:addProd.nama,
+                                     event:{keyup:addProd.productNameVerification}"
+                                        class="form-control" minlength="5" 
+                                        maxlength="200" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Kategori <span class="required">*</span></label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" data-bind="
+                                                options: addProd.kategori,
+                                                optionsText: 'name',
+                                                optionsValue: 'name',
+                                                value:addProd.selectedCategory">
+                                        </select>
+                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Hightlights <span class="required">*</span></label>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" data-bind="value:addProd.fiturUmumInput">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <button type="button" class="btn btn-info" data-bind="click:addProd.addFiturUmum">&nbsp;Tambah&nbsp;&nbsp;</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                             <div class="form-group" data-bind="visible:addProd.fiturUmumVisible">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-6">
+                                        <ul>
+                                        <!-- ko foreach:addProd.fiturUmum -->
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                     <li data-bind="text:fitur"></li>
+                                                </div>
+                                                <div class="col-md-1"><a data-bind="click:$root.addProd.removeFiturUmum"><i class="glyphicon glyphicon-trash"></i></a></div>
+                                            </div>
+                                        <!-- /ko-->
+                                        </ul>
+                                    </div>
+                            </div>
+                             <div class="form-group">
+                                <label class="col-sm-2 control-label">Spesifikasi <span class="required">*</span></label>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" data-bind="attr:{placeholder:'Kategori'},value:addProd.kategoriSpesifikasi">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <input type="text" class="form-control" data-bind="attr:{placeholder:'Spesifikasi'}, value:addProd.spesifikasiInput">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <button type="button" class="btn btn-info" data-bind="click:addProd.addSpesifikasi">&nbsp;Tambah&nbsp;&nbsp;</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                             <div class="form-group" data-bind="visible:addProd.spesifikasiVisible">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-6">
+                                        <table class="table table-bordered table-hover">
+                                            <tbody>
+                                                 <!-- ko foreach:addProd.spesifikasi -->
+                                                <tr>
+                                                    <td data-bind="text:$data.kategori" style="font-weight: bold"></td>
+                                                    <td data-bind="text:$data.spesifikasi"></td>
+                                                    <td style="width: 10px; border-color: white"><a data-bind="click:$root.addProd.removeSpesifikasi"><i class="glyphicon glyphicon-trash"></i></a></td>
+                                                </tr>
+                                                 <!-- /ko-->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </div>
+
+                            <div class="form-group" id="editor-wrapper">
+                                <label for="editor" 
+                                class="col-sm-2 control-label">Deskripsi * </label>
+                                <div class="col-sm-6">  
+                                    <textarea id="editor" minlength="5" 
+                                    rows="10" data-bind="value:addProd.deskripsi" 
+                                    class="form-control" style="white-space: pre-line" required></textarea>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        
+                  </div>
+                  <div class="panel-heading">
+                            <p><strong>Stok & Harga</strong></p>
+                  </div>
+                   <div class="panel-body">
+                        <div class="col-lg-12">
+                            <div class="form-group" id="harga">
+                                <label class="col-sm-2 control-label">Harga
+                                    <span class="required">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="number" data-bind="value:addProd.harga" 
+                                    class="form-control" minlength="5" 
+                                    maxlength="200" required/>
+                                </div>
+                            </div>
+                            <div class="form-group" id="stok">
+                                <label class="col-sm-2 control-label">Stok
+                                    <span class="required">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="number" data-bind="value:addProd.stok" 
+                                    class="form-control" minlength="5" 
+                                    maxlength="200" required/>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                              <label class="col-sm-2 control-label label-variasi"></label>
+                                <div class="col-sm-6" >
+                                        <table data-bind='visible: addProd.variasi().length > 0'>
+                                            <thead>
+                                                <tr>
+                                                    <th>Nama</th>
+                                                    <th>Harga</th>
+                                                    <th>Stok</th>
+                                                    <th />
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind='foreach: addProd.variasi'>
+                                                <tr>
+                                                    <td><input class='required' data-bind='value: nama, uniqueName: true' /></td>
+                                                    <td><input class='required number' data-bind='value: harga, uniqueName: true' /></td>
+                                                    <td><input class='required number' data-bind='value: stok, uniqueName: true' /></td>
+                                                    <td><a href='#' data-bind='click: $root.removeVariasi'><span class="glyphicon glyphicon-minus-sign"></span></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <a href="#" data-bind='click: addProd.tambahVariasi'><span class="glyphicon glyphicon-plus-sign"></span> Tambah Variasi</a>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                              <label class="col-sm-2 control-label">Grosir</label>
+                                <div class="col-sm-10" >
+                                        <table data-bind='visible:addProd.hargaGrosir().length > 0'>
+                                            <thead>
+                                                <tr>
+                                                    <th>Variasi</th>
+                                                    <th>Min</th>
+                                                    <th>Max</th>
+                                                    <th>Harga Satuan</th>
+                                                    <th />
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind='foreach: addProd.hargaGrosir'>
+                                                <tr>
+                                                    <td>
+                                                    
+                                                    <select id="variasiSelected" data-bind="  options: variasi,
+                                                    optionsText: 'nama',
+                                                    optionsValue: 'id', value:variasi_id"></select></td>
+                                                        <td><input class='required' data-bind='value: min, uniqueName: true' /></td>
+                                                        <td><input class='required number' data-bind='value: max, uniqueName: true' /></td>
+                                                        <td><input class='required number' data-bind='value: hargaSatuan, uniqueName: true' /></td>
+                                                        <td><a href='#' data-bind='click: $root.removeHargaGrosir'><span class="glyphicon glyphicon-minus-sign"></span></a></td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                        <a href="#" data-bind='click: addProd.tambahHargaGrosir'> <span class="glyphicon glyphicon-plus-sign"></span> Tambah Harga Grosir</a>
+                                </div>
+                            </div>
+                  </div>
+             </div>
+              <div class="panel-heading">
+                  <p><strong>Diskon</strong></p>
+              </div>
+                  <div class="panel-body">
+                       <div class="form-group">
+                                <label class="col-sm-2 control-label">Kode Diskon
+                                    <span class="required">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="text" data-bind="value:addProd.kodePromosi"
+                                    class="form-control" minlength="5" 
+                                    maxlength="200" required/>
+                                </div>
+                            </div>
+                        <div class="form-group">
+                                <label class="col-sm-2 control-label">Persen
+                                    <span class="required">*</span></label>
+                                <div class="col-sm-6">
+                                    <input type="number" data-bind="value:addProd.persen"
+                                    class="form-control" minlength="5" 
+                                    maxlength="200" required/>
+                                </div>
+                            </div>
+
+                         <div class="form-group">
+                                <label class="col-sm-2 control-label">Min. Pembelian (Rp.)
+                                    <span class="required">*</span>
+                                </label>
+                                
+                                
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                    <div class="input-group-addon">Rp.</div>
+                                    <input type="number" data-bind="value:addProd.minPembelian"
+                                    class="form-control" minlength="5" 
+                                    maxlength="200" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Max. Pembelian
+                                    <span class="required">*</span></label>
+                                <div class="col-sm-6">
+                                     <div class="input-group">
+                                    <div class="input-group-addon">Rp.</div>
+                                    <input type="number" data-bind="value:addProd.maxPembelian"
+                                    class="form-control" minlength="5" 
+                                    maxlength="200" required/>
+                                    </div>
+
+                                </div>
+                                
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Pot. Maksimal
+                                    <span class="required">*</span></label>
+                                <div class="col-sm-6">
+                                      <div class="input-group">
+                                    <div class="input-group-addon">Rp.</div>
+                                    <input type="number" data-bind="value:addProd.maxPotongan"
+                                    class="form-control" minlength="5" 
+                                    maxlength="200" required/>
+                                      </div>
+                                </div>
+                            </div>
+                  </div>
+              <div class="panel-heading">
+                    <p><strong>Pengiriman</strong></p>
+              </div>
+               <div class="panel-body">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Berat
+                                <span class="required">*</span></label>
+                            <div class="col-sm-6">
+                                <input type="number" data-bind="value:addProd.berat"
+                                class="form-control" minlength="5" 
+                                maxlength="200" required/>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Ongkos Kirim
+                                <span class="required">*</span></label>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon">Rp.</div>
+                                <input type="number" data-bind="value:addProd.ongkos_kirim"
+                                class="form-control" minlength="5" 
+                                maxlength="200" required/></div>
+                            </div>
+                        </div>
+                  </div>
+             </div>
+             <div class="panel-heading">
+                    <p><strong>Lainnya</strong></p>
+              </div>
+               <div class="panel-body">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Pre-Order
+                                <span class="required">*</span></label>
+                            <div class="col-sm-6">
+                                <label class="switch">
+                                    <input type="checkbox" data-bind="checked:addProd.pre_order">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                         <div class="form-group" id="harga">
+                            <label class="col-sm-2 control-label">Kondisi
+                                <span class="required">*</span></label>
+                            <div class="col-sm-6">
+                                 <select class="form-control" data-bind="
+                                    options: addProd.kondisi,
+                                    optionsText: 'name',
+                                    optionsValue: 'name',
+                                    value:addProd.selectedCondition">
+                                 </select>
+                            </div>
+                        </div>
+                  </div>
+                  
+                 
+             </div>
+        </div>
+        <button class="btn btn-success" data-bind="click:addProd.submit">OK</button>
+</div>
+    </div>
+{{!-- <script src="/javascripts/penjual.js"></script> --}}
+{{!-- 
+<script>
+    //newProduct();
+    tambahProduk();
+    
+</script> --}}
+ 

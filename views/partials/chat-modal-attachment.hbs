@@ -1,0 +1,29 @@
+
+
+
+ 
+        
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="attachmentModal" role="dialog" style="width: 300px; margin-left: 675px; margin-top: 100px;">
+    <div class="modal-dialog" style="width: 300px;">
+      <!-- Modal content-->
+      <div class="modal-content" style="background-color: white">
+        <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <img class="image" data-bind="attr: {src: chat.photoUrl}" alt="Upload Gambar" style="height: 100px; text-align: center; background-color: white; border-color: black; border-width: 100px"/>
+          <br>
+          <input data-bind="event: {change: chat.attachPicture}" type="file" accept="image/*" class="fileChooser" style="color: black"/>
+          <br>
+         <textarea style="resize: none" placeholder="Add a caption...." class="form-control" rows="3" data-bind="value:chat.caption"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click:chat.upload">Upload</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>

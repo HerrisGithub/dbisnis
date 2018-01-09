@@ -1,0 +1,97 @@
+<div class="modal fade" id="address" style="padding-top: 130px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" 
+                aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Address</h4>
+            </div>
+            <div class="modal-body">
+               
+               
+                <div class="row">
+                    <div class="col-md-3" style="padding-left: 0">
+                       Provinsi
+                    </div>
+                    <div class="col-md-9">
+                       <select class="form-control" 
+                       data-bind="
+                        options:prof.provinsi,
+                        optionsText: 'provinsi',
+                        optionsValue: 'id', value:prof.provinceId,
+                        event:{change:prof.changeProvince}">
+                        </select>
+                    </div>
+                </div>
+                 
+                <br>
+                <div class="row">
+                    <div class="col-md-3" style="padding-left: 0">
+                       Kota/Kabupaten
+                    </div>
+                    <div class="col-md-9">
+                          <select class="form-control" 
+                       data-bind="
+                        options:prof.kabupaten,
+                        optionsText: 'district',
+                        optionsValue: 'id',
+                        value:prof.kabupatenId,
+                        event:{change:prof.changeDistrict}">
+                        </select>
+                        {{!-- <input type="text" class="form-control" data-bind="value:prof.phone"> --}}
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-3" style="padding-left: 0">
+                       Kecamatan
+                    </div>
+                    <div class="col-md-9">
+                        <select class="form-control" 
+                       data-bind="
+                        options:prof.kecamatan,
+                        optionsText: 'sub_district',
+                        optionsValue: 'id',
+                         value:prof.kecamatanId,
+                         event:{change:prof.changeSubDistrict}
+                        ">
+                        </select>
+                    </div>
+                </div>
+                 <br>
+                <div class="row">
+                    <div class="col-md-3" style="padding-left: 0">
+                       Alamat
+                    </div>
+                    <div class="col-md-9">
+                        
+                        <div class="form-group">
+                                <textarea class="form-control" rows="3" required="required"
+                                draggable="false" style="resize: none" 
+                                placeholder="Masukan alamat tempat tinggal"
+                                data-bind="value:prof.address"></textarea>
+                        </div>
+                        
+                    </div>
+                </div>
+                 <br>
+                <div class="row">
+                    <div class="col-md-3" style="padding-left: 0">
+                       Kode Pos
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" 
+                        class="form-control" data-bind="value:prof.postal_code">
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bind="click:prof.saveEditInformasiUmum">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

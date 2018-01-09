@@ -1,0 +1,27 @@
+<div class="w3-col m3">
+      <!-- Profile -->
+      <div class="w3-card-2 w3-round w3-white">
+        <div class="w3-container">
+         <h4 class="w3-center" data-bind="text:t.username"></h4>
+         <p style="padding-left: 30%">
+             <a href="#"
+             data-bind="attr:{href:'/me/profile'}"><img data-bind="attr:{src:t.photo}" 
+             class="w3-circle" 
+             style="height:106px;width:106px" 
+             alt="Avatar"></a>
+             </p>
+         <hr>
+         {{!-- <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p> --}}
+         <p style="word-wrap: break-word">
+             <i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> 
+            <span data-bind="text:t.address()+' , '+t.province()+' , '+t.postal_code()"></span>
+        </p>
+         <p>
+             <i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>
+            <span data-bind="text:t.birth"></span>
+        </p>
+        </div>
+      </div>
+      <br>
+     
+    </div>

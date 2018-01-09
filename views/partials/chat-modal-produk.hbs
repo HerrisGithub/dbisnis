@@ -1,0 +1,32 @@
+<div class="container" style="font-variant-caps: all-petite-caps; font-weight: bold">
+  <!-- Modal -->
+  <div class="modal fade" id="produkModal" role="dialog" style="width: 300px; margin-left: 675px; margin-top: 100px;">
+    <div class="modal-dialog" style="width: 300px;">
+      <!-- Modal content-->
+      <div class="modal-content" style="background-color: white">
+        <div class="modal-body" data-bind="click:chat.getProdukByUser()">
+            <div data-bind="foreach:chat.userProduct">
+               <div class="row" data-bind="click:$root.chat.sendProduk">
+                   <div class="col-md-6">
+                    <img data-bind="attr:{src:$data.gambar}" style="height: 60px; width: 100%"></img>
+                </div>
+                <div class="col-md-6">
+                    <span data-bind="text:$data.nama"></span>
+                </div>
+               </div>
+               <br>
+            </div>
+        </div>
+        <br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+
+
+  </div>
+  
+</div>
+

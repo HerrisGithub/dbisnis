@@ -1,0 +1,61 @@
+
+<style>
+   
+</style>
+<div class="" style="font-weight: 700" data-bind="event:{load:prod.loadCategoryProduct()}">
+   
+    <br>
+    <div class="col-md-2">
+       {{>product-left-sidebar}}
+    </div>
+    <div class="col-md-9">
+        <div class="row" style="background-color: white">
+            <div class="col-md-3" style="padding-left: 0; color: white">
+                    <div style="background:  #2b96b6; width: 200px;  padding: 15px; padding-left: 30px; float: left; font-size: 11pt">
+                        <strong>HOT PRODUCTS</strong></div>
+                <div style="width: 0;
+                height: 0;
+                float: left;
+                border-top: 26px solid transparent;
+                border-left: 20px solid #2b96b6;
+                border-bottom: 25px solid transparent;">&nbsp;</div>
+            </div>
+            <!-- ko foreach:nav.nav()  -->
+                <div class="col-md-1" data-bind="text:name" 
+                style="padding-top:12px"></div>
+            <!-- /ko -->
+        </div>
+    <br>
+    <div class="row" style="font-variant-caps: all-petite-caps">
+        <!-- ko foreach:prod.produk()  -->
+        <!-- ko if:$data.posting===true  -->
+       <div class="col-xs-1 col-sm-1 col-md-1 col-lg-3" style="width: 240px">
+           <a data-bind="attr:{href:'/produk/get/'+id}" class="thumbnail" style="width:220px">
+               <div style="height: 220px; width: 210px; padding:10px; z-index: -1 ">
+                    <img data-src="#" style="height: 220px; float: right" data-bind="attr:{src:gambar}" >    
+                    <!-- ko if:$root.prod.isNotUndefinedOrNUll(max) -->
+                     <span class="label label-warning label-lg" style="float: right; height: 25px; width: 70px; font-size: 13pt">Grosir</span>
+                     <!-- /ko -->
+               </div>
+               <br>
+               <p style="padding: 10px;padding-bottom: 0;" 
+               data-bind="text:nama"></p>
+                <p style="padding: 10px;padding-bottom: 0;color: #2b96b6; font-size: 16pt; font-weight: bold" data-bind="text:'Rp. '+harga">&nbsp;</p>
+                {{!-- <div class="btn btn-primary" style="width: 100%; background-color: #2b96b6; border: none;" data-bind="click:$root.prod.addToCart"><i class="fa fa-shopping-cart"> Add to cart</i></div> --}}
+           </a>
+       </div>
+       <!-- /ko -->
+        <!-- /ko -->
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
